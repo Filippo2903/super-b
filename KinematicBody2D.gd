@@ -17,8 +17,6 @@ func _physics_process(delta):
 	if velocity.y==0:
 		i=10
 		cicli = 0
-		if not on_ground:
-			print (velocity)
 	velocity.y += GRAVITY * delta * i
 	i = cicli * 0.01 +10
 	print (velocity)

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/salto.png-d36d830bc4c7dd4f0b818533d4443080.stex"
+path="res://.import/Bricks_Variation_1_29_JE1 (1).webp-9ac7a64d69cd1a31cb0f4cfa04513cea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://salto.png"
-dest_files=[ "res://.import/salto.png-d36d830bc4c7dd4f0b818533d4443080.stex" ]
+source_file="res://Bricks_Variation_1_29_JE1 (1).webp"
+dest_files=[ "res://.import/Bricks_Variation_1_29_JE1 (1).webp-9ac7a64d69cd1a31cb0f4cfa04513cea.stex" ]
 
 [params]
 
