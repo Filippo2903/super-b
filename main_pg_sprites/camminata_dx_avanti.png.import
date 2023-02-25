@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Grass_Block_(side_texture)_JE2_B.png-f3c7805e7c3ee0eadce76f115baf2f56.stex"
+path="res://.import/camminata_dx_avanti.png-32cf551b6250f1ac63cc01e2210535d1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Grass_Block_(side_texture)_JE2_B.png"
-dest_files=[ "res://.import/Grass_Block_(side_texture)_JE2_B.png-f3c7805e7c3ee0eadce76f115baf2f56.stex" ]
+source_file="res://main_pg_sprites/camminata_dx_avanti.png"
+dest_files=[ "res://.import/camminata_dx_avanti.png-32cf551b6250f1ac63cc01e2210535d1.stex" ]
 
 [params]
 

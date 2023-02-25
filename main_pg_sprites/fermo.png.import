@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/camminata_sx_avanti.png-4af74dd54099b121d98f8766aefb7f69.stex"
+path="res://.import/fermo.png-a69de4a50868375ec370a43af9050a1e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/camminata_sx_avanti.png"
-dest_files=[ "res://.import/camminata_sx_avanti.png-4af74dd54099b121d98f8766aefb7f69.stex" ]
+source_file="res://main_pg_sprites/fermo.png"
+dest_files=[ "res://.import/fermo.png-a69de4a50868375ec370a43af9050a1e.stex" ]
 
 [params]
 

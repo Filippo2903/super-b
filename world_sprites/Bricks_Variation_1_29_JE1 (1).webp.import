@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/camminata_dx_avanti.png-ab0e5b9649ee9b69f11d32194c860084.stex"
+path="res://.import/Bricks_Variation_1_29_JE1 (1).webp-92a98d5ffd32e1b438f27d89a3c2cc8a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/camminata_dx_avanti.png"
-dest_files=[ "res://.import/camminata_dx_avanti.png-ab0e5b9649ee9b69f11d32194c860084.stex" ]
+source_file="res://world_sprites/Bricks_Variation_1_29_JE1 (1).webp"
+dest_files=[ "res://.import/Bricks_Variation_1_29_JE1 (1).webp-92a98d5ffd32e1b438f27d89a3c2cc8a.stex" ]
 
 [params]
 
