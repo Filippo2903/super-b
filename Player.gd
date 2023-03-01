@@ -23,8 +23,6 @@ var ground_pound = false
 
 var ground_pound_pause = 0
 
-var n = 0
-
 func animate():
 	if velocity.x != 0:
 		animation.flip_h = velocity.x < 0
@@ -37,7 +35,7 @@ func animate():
 		animation.animation = "jump"
 		animation.stop()
 	
-	elif velocity.length() > 0.5:
+	elif abs(velocity.x) > 60:
 		animation.play("walk")
 	
 	else:
@@ -84,10 +82,31 @@ func move(delta):
 	velocity.x = lerp(velocity.x, WALK_SPEED * direction, 0.1)
 	velocity = move_and_slide(velocity, Vector2.UP)
 
+func collision():
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.name != "Marta":
+			return
+			
+		var normal = collision.normal
+
+		if abs(normal.y) > abs(normal.x):
+			# Collision on top or bottom
+			if normal.y > 0:
+				print("Collision on top")
+			else:
+				print("Collision on bottom")
+		else:
+			# Collision on side
+			if normal.x > 0:
+				print("Collision on right")
+			else:
+				print("Collision on left")
+
 func debug_reset():
 	if Input.is_key_pressed(KEY_R):
-		position.x = 650
-		position.y = 320
+		position.x = 500
+		position.y = -100
 
 
 func _ready():
@@ -99,4 +118,5 @@ func _physics_process(delta):
 func _process(delta):
 	move(delta)
 	animate()
+	collision()
 	debug_reset()

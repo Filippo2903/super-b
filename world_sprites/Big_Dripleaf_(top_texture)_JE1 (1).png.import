@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Big_Dripleaf_(top_texture)_JE1 (1).png-7e48f1bc4ff46a4aa6dd77d65d5608b7.stex"
+path="res://.import/Big_Dripleaf_(top_texture)_JE1 (1).png-5f12b88a102e55a7206826d638facaf3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Big_Dripleaf_(top_texture)_JE1 (1).png"
-dest_files=[ "res://.import/Big_Dripleaf_(top_texture)_JE1 (1).png-7e48f1bc4ff46a4aa6dd77d65d5608b7.stex" ]
+source_file="res://world_sprites/Big_Dripleaf_(top_texture)_JE1 (1).png"
+dest_files=[ "res://.import/Big_Dripleaf_(top_texture)_JE1 (1).png-5f12b88a102e55a7206826d638facaf3.stex" ]
 
 [params]
 

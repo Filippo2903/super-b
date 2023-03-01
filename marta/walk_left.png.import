@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/WhatsApp Image 2023-02-28 at 21.37.243-3.png.png-21f91398c125e1d84455bf792018abb8.stex"
+path="res://.import/walk_left.png-fb0cc4ef921dff4865b25c609d6e69ee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://WhatsApp Image 2023-02-28 at 21.37.243-3.png.png"
-dest_files=[ "res://.import/WhatsApp Image 2023-02-28 at 21.37.243-3.png.png-21f91398c125e1d84455bf792018abb8.stex" ]
+source_file="res://marta/walk_left.png"
+dest_files=[ "res://.import/walk_left.png-fb0cc4ef921dff4865b25c609d6e69ee.stex" ]
 
 [params]
 

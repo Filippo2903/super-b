@@ -1,8 +1,8 @@
 extends Camera2D
 
 func _ready():
-	limit_top=-200
-	limit_bottom=700
+	limit_top=-650
+	limit_bottom=250
 	
 func _process(delta):
 	var window_size = OS.get_window_size()
