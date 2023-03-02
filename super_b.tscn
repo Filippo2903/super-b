@@ -12,11 +12,11 @@
 [ext_resource path="res://Camera2D.gd" type="Script" id=10]
 [ext_resource path="res://marta/walk_right.png" type="Texture" id=11]
 [ext_resource path="res://Marta.gd" type="Script" id=12]
-[ext_resource path="res://super_b.gd" type="Script" id=13]
 [ext_resource path="res://marta/steady.png" type="Texture" id=14]
 [ext_resource path="res://marta/walk_left.png" type="Texture" id=15]
 [ext_resource path="res://world_sprites/Big_Dripleaf_(stem_texture)_JE1 (1).png" type="Texture" id=16]
 [ext_resource path="res://world_sprites/Big_Dripleaf_(top_texture)_JE1 (1).png" type="Texture" id=17]
+[ext_resource path="res://background/IMG-4049.jpg" type="Texture" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -142,14 +142,14 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "ground_pound",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "walk",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -157,9 +157,9 @@ animations = [ {
 "name": "steady",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "ground_pound",
+"name": "walk",
 "speed": 5.0
 } ]
 
@@ -178,7 +178,6 @@ animations = [ {
 extents = Vector2( 32, 32 )
 
 [node name="Main" type="Node2D"]
-script = ExtResource( 13 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 4 )
@@ -188,9 +187,6 @@ tile_data = PoolIntArray( -458754, 0, 0, -458753, 0, 0, -524288, 0, 0, -524287, 
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( -151, -293 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2( 150, -150 )
@@ -219,3 +215,14 @@ animation = "walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Marta"]
 position = Vector2( -6, 6 )
 shape = SubResource( 9 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 400, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 942.875, -383 )
+scale = Vector2( 0.964844, 0.522487 )
+texture = ExtResource( 18 )
