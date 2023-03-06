@@ -82,31 +82,20 @@ func move(delta):
 	velocity.x = lerp(velocity.x, WALK_SPEED * direction, 0.1)
 	velocity = move_and_slide(velocity, Vector2.UP)
 
+func die():
+	position.x = 500
+	position.y = -500
+	
 func collision():
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider.name != "Marta":
 			return
-			
-		var normal = collision.normal
-
-		if abs(normal.y) > abs(normal.x):
-			# Collision on top or bottom
-			if normal.y > 0:
-				print("Collision on top")
-			else:
-				print("Collision on bottom")
-		else:
-			# Collision on side
-			if normal.x > 0:
-				print("Collision on right")
-			else:
-				print("Collision on left")
 
 func debug_reset():
 	if Input.is_key_pressed(KEY_R):
 		position.x = 500
-		position.y = -100
+		position.y = -500
 
 
 func _ready():

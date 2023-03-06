@@ -1,20 +1,29 @@
 extends KinematicBody2D
 
-const SPEED = 150
+var SPEED = 150
 
 const Direction = {
 	STEADY = 0,
 	LEFT = -1,
 	RIGHT = 1
 }
+
 var velocity = Vector2.ZERO
 var direction = Direction.LEFT
 
 onready var animation = $AnimatedSprite
 
-
 func _ready():
 	animation.play("walk")
+
+func _on_SideCollision_body_entered(body):
+	body.die()
+	
+func _on_TopCollision_body_entered(body):
+	die()
+
+func die():
+	SPEED = 0
 
 func _process(delta):
 	
@@ -24,3 +33,5 @@ func _process(delta):
 		
 	velocity.x = SPEED * direction
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+
