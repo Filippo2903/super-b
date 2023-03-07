@@ -2,9 +2,10 @@ extends KinematicBody2D
 
 const GRAVITY = 3900
 
-const WALK_SPEED = 500
-const GROUND_POUND_SPEED = 1300
+const WALK_SPEED = 650
 const JUMP_SPEED = 1500
+const GROUND_POUND_SPEED = 1300
+const REBOUND_SPEED = 800
 
 const Direction = {
 	STEADY = 0,
@@ -13,22 +14,24 @@ const Direction = {
 }
 
 const Status = {
-	DEAD = 0,
+	POWER_UP = 3,
+	NORMAL = 2,
 	SMALL = 1,
-	BIG = 2,
-	POWER_UP = 3
+	DEAD = 0
 }
 
 onready var animation = $AnimatedSprite
 onready var hitbox = $CollisionShape2D
 
-var status = Status.SMALL
+var status
 var direction = Direction.STEADY
 var velocity = Vector2.ZERO
 
 var jumping = false
 var ground_pound = false
 var ground_pound_pause = 0
+var rebound = false
+var rebound_pause = 0
 
 
 func animate():
@@ -39,7 +42,7 @@ func animate():
 		animation.animation = "ground_pound"
 		animation.stop()
 	
-	elif jumping:
+	elif not is_on_floor():
 		animation.animation = "jump"
 		animation.stop()
 	
@@ -66,10 +69,12 @@ func move(delta):
 	if ground_pound:
 		# wait some time before going down
 		ground_pound_pause += delta
-		
-		if ground_pound_pause < 15 * delta:
-			animation.rotate(0.447)
+		if ground_pound_pause < 105 * delta: #15
+			#animation.rotate(0.447)
+			if ground_pound_pause == delta:
+				animation.rotate(90)
 			return
+		
 		animation.rotation = 0 
 		velocity.x = 0
 		velocity.y = GROUND_POUND_SPEED
@@ -88,52 +93,55 @@ func move(delta):
 		velocity.y = lerp(velocity.y, 0, 0.4)
 	
 	velocity.x = lerp(velocity.x, WALK_SPEED * direction, 0.1)
+	
+	if rebound:
+		rebound_pause += delta
+		if rebound_pause < 2 * delta:
+			velocity.x = 0
+			velocity.y = -REBOUND_SPEED
+		else:
+			rebound = false
+			rebound_pause = 0
+		move_and_slide(velocity, Vector2.UP)
+		return
+		
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-func status_switch():
-	print("cazz")
-	match(status):
+func hit():
+	status_down()
+
+
+func status_down():
+	if status > Status.DEAD:
+		status -= 1
+	match_status()
+	
+func status_up():
+	if status < Status.POWER_UP:
+		status += 1
+	match_status()
+
+func match_status():
+	match status:
 		Status.POWER_UP:
 			scale.y = 2
-			return
-		Status.BIG:
+		Status.NORMAL:
 			scale.y = 2
-			return
 		Status.SMALL:
 			scale.y = 1
-			return
 		Status.DEAD:
-			print("caz1sdz")
 			respawn()
 
 func respawn():
 	position.x = 500
 	position.y = -500
-	scale.y = 1
-	
-
-func status_down():
-	
-	if status > Status.DEAD:
-		status -= 1
-	status_switch()
-	
-	
-func status_up():
-	if status < Status.POWER_UP:
-		status +=1
-	status_switch()
-
-func debug_reset():
-	if Input.is_key_pressed(KEY_R):
-		respawn()
+	#scale.y = 1
 
 
 func _ready():
 	# DEBUG
-	status = Status.BIG
-	
-	status_switch()
+	status = Status.NORMAL
+	match_status()
 
 func _physics_process(delta):
 	velocity.y += GRAVITY * delta
@@ -142,3 +150,9 @@ func _process(delta):
 	move(delta)
 	animate()
 	debug_reset()
+
+func debug_reset():
+	if Input.is_key_pressed(KEY_R):
+		status = Status.NORMAL
+		match_status()
+		respawn()

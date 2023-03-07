@@ -1,37 +1,90 @@
 extends KinematicBody2D
 
-var SPEED = 150
+const GRAVITY = 3900
+
+const Speed = {
+	STEADY = 0,
+	WALK = 150,
+	ROLL = 800
+}
 
 const Direction = {
-	STEADY = 0,
 	LEFT = -1,
 	RIGHT = 1
 }
 
-var velocity = Vector2.ZERO
-var direction = Direction.LEFT
+const Status = {
+	NORMAL = 2,
+	STEADY = 1,
+	ROLLING = 0
+}
 
 onready var animation = $AnimatedSprite
 
+var status = Status.NORMAL
+var direction = Direction.LEFT
+var velocity = Vector2.ZERO
+
+var speed = Speed.WALK
+
+
 func _ready():
 	animation.play("walk")
+	status = Status.NORMAL
+	change_status()
 
 func _on_SideCollision_body_entered(body):
-	body.status_down()
+	if body.name != "Player":
+		return
 	
+	if status != Status.STEADY:
+		body.hit()
+	else:
+		if body.position.x < position.x:
+			direction = 1
+		else:
+			direction = -1
+		hit()
+
 func _on_TopCollision_body_entered(body):
-	die()
-
-func die():
-	SPEED = 0
-
-func _process(delta):
+	if body.name != "Player":
+		return
 	
+	body.rebound = true
+	hit()
+
+func change_status():
+	match status:
+		Status.NORMAL:
+			speed = Speed.WALK
+		Status.STEADY:
+			speed = Speed.STEADY
+		Status.ROLLING:
+			speed = Speed.ROLL
+			
+func hit():
+	if status == Status.ROLLING:
+		status += 1
+	else:
+		status -= 1
+	
+	change_status()
+
+func animate():
+	animation.flip_h = direction == 1
+	if status == Status.NORMAL:
+		animation.play("walk")
+	else:
+		animation.play("roll")
+
+func move(delta):
 	if is_on_wall():
 		direction *= -1
-		animation.flip_h = direction == 1
-		
-	velocity.x = SPEED * direction
+	
+	velocity.x = speed * direction
+	velocity.y += GRAVITY * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-
+func _process(delta):
+	move(delta)
+	animate()
