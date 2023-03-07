@@ -17,7 +17,7 @@ func _ready():
 	animation.play("walk")
 
 func _on_SideCollision_body_entered(body):
-	body.die()
+	body.status_down()
 	
 func _on_TopCollision_body_entered(body):
 	die()

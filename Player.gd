@@ -12,16 +12,24 @@ const Direction = {
 	RIGHT = 1
 }
 
+const Status = {
+	DEAD = 0,
+	SMALL = 1,
+	BIG = 2,
+	POWER_UP = 3
+}
+
 onready var animation = $AnimatedSprite
 onready var hitbox = $CollisionShape2D
 
-var velocity = Vector2.ZERO
+var status = Status.SMALL
 var direction = Direction.STEADY
+var velocity = Vector2.ZERO
 
 var jumping = false
 var ground_pound = false
-
 var ground_pound_pause = 0
+
 
 func animate():
 	if velocity.x != 0:
@@ -82,24 +90,50 @@ func move(delta):
 	velocity.x = lerp(velocity.x, WALK_SPEED * direction, 0.1)
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-func die():
+func status_switch():
+	print("cazz")
+	match(status):
+		Status.POWER_UP:
+			scale.y = 2
+			return
+		Status.BIG:
+			scale.y = 2
+			return
+		Status.SMALL:
+			scale.y = 1
+			return
+		Status.DEAD:
+			print("caz1sdz")
+			respawn()
+
+func respawn():
 	position.x = 500
 	position.y = -500
+	scale.y = 1
 	
-func collision():
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		if collision.collider.name != "Marta":
-			return
+
+func status_down():
+	
+	if status > Status.DEAD:
+		status -= 1
+	status_switch()
+	
+	
+func status_up():
+	if status < Status.POWER_UP:
+		status +=1
+	status_switch()
 
 func debug_reset():
 	if Input.is_key_pressed(KEY_R):
-		position.x = 500
-		position.y = -500
+		respawn()
 
 
 func _ready():
-	pass
+	# DEBUG
+	status = Status.BIG
+	
+	status_switch()
 
 func _physics_process(delta):
 	velocity.y += GRAVITY * delta
@@ -107,5 +141,4 @@ func _physics_process(delta):
 func _process(delta):
 	move(delta)
 	animate()
-	collision()
 	debug_reset()

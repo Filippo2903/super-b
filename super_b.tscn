@@ -145,7 +145,6 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1, -589 )
-scale = Vector2( 1, 2 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 visible = false
