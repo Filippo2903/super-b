@@ -28,20 +28,35 @@ var direction = Direction.STEADY
 var velocity = Vector2.ZERO
 
 var jumping = false
+var crouch = false
 var ground_pound = false
 var ground_pound_pause = 0
 var rebound = false
 var rebound_pause = 0
 
+var just_hitted=0
 
+func hit():
+	just_hitted=true
+	status_down()
+	
 func animate():
 	if velocity.x != 0:
 		animation.flip_h = velocity.x < 0
 	
-	if ground_pound:
-		animation.animation = "ground_pound"
+	if crouch:
+		animation.animation = "crouch"
 		animation.stop()
 	
+	elif ground_pound:
+		if is_on_floor():
+			animation.animation = "crouch"
+			animation.stop()
+			return
+		animation.animation = "ground_pound"
+		animation.stop()
+		
+		
 	elif not is_on_floor():
 		animation.animation = "jump"
 		animation.stop()
@@ -57,27 +72,54 @@ func move(delta):
 	direction = Direction.STEADY
 	
 	if is_on_floor():
-		animation.set_position(Vector2(hitbox.position.x, hitbox.position.y))
+		if ground_pound and not (Input.is_action_pressed("ui_down") or Input.is_action_pressed("shift")):
+			if status == 1:
+				scale.y = status
+			if status >= 2:
+				scale.y = 2
+			position.y-=32
+			ground_pound = false
+			ground_pound_pause = 0
+			hitbox.scale.y = 1
 		jumping = false
-		ground_pound = false
-		ground_pound_pause = 0
 		
 	if (Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("shift")) and not is_on_floor():
-		hitbox.set_position(Vector2(hitbox.position.x, hitbox.position.y - 20))
+		if status == 1:
+				scale = Vector2(1,1)
+		if status >= 2:
+			scale = Vector2(1,1)
 		ground_pound = true
 	
 	if ground_pound:
 		# wait some time before going down
 		ground_pound_pause += delta
-		if ground_pound_pause < 105 * delta: #15
-			#animation.rotate(0.447)
-			if ground_pound_pause == delta:
-				animation.rotate(90)
+		if ground_pound_pause < 15 * delta:
+			animation.rotate(0.447)
 			return
-		
 		animation.rotation = 0 
 		velocity.x = 0
 		velocity.y = GROUND_POUND_SPEED
+		velocity = move_and_slide(velocity, Vector2.UP)
+		return
+	
+	
+	if (Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("shift"))  and status > 1:
+		position.y +=32
+		crouch = true
+		
+		
+	if crouch:
+		if (Input.is_action_just_released("ui_down") or Input.is_action_just_released("shift")) or just_hitted:
+			crouch = false
+			if status == 1:
+				scale.y = status
+			if status >= 2:
+				scale.y = 2
+			position.y -=32
+			return
+		scale.y = 1
+		velocity.x = lerp(velocity.x, 0, 0.1)
+		print(velocity)
 		velocity = move_and_slide(velocity, Vector2.UP)
 		return
 	
@@ -107,9 +149,6 @@ func move(delta):
 		
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-func hit():
-	status_down()
-
 
 func status_down():
 	if status > Status.DEAD:
@@ -122,6 +161,8 @@ func status_up():
 	match_status()
 
 func match_status():
+	if scale.y == 1:
+		position.y -= 32
 	match status:
 		Status.POWER_UP:
 			scale.y = 2
@@ -135,8 +176,8 @@ func match_status():
 func respawn():
 	position.x = 500
 	position.y = -500
+	status = Status.SMALL
 	#scale.y = 1
-
 
 func _ready():
 	# DEBUG
