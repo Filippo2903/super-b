@@ -1,6 +1,6 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-const GRAVITY = 3900
+#const GRAVITY = 3900
 
 const Speed = {
 	STEADY = 0,
@@ -19,11 +19,10 @@ const Status = {
 	ROLLING = 0
 }
 
-onready var animation = $AnimatedSprite
+@onready var animation = $AnimatedSprite2D
 
 var status = Status.NORMAL
 var direction = Direction.LEFT
-var velocity = Vector2.ZERO
 
 var speed = Speed.WALK
 
@@ -47,9 +46,6 @@ func _on_SideCollision_body_entered(body):
 		hit()
 
 func _on_TopCollision_body_entered(body):
-	if body.name != "Player":
-		return
-	
 	body.rebound = true
 	hit()
 
@@ -82,8 +78,9 @@ func move(delta):
 		direction *= -1
 	
 	velocity.x = speed * direction
-	velocity.y += GRAVITY * delta
-	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity.y = 0
+	set_up_direction(Vector2.UP)
+	move_and_slide()
 
 func _process(delta):
 	move(delta)

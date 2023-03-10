@@ -1,62 +1,83 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://c1nutyaovxq2n"]
 
-[ext_resource path="res://main_pg_sprites/walk_right.png" type="Texture" id=1]
-[ext_resource path="res://main_pg_sprites/walk_left.png" type="Texture" id=2]
-[ext_resource path="res://main_pg_sprites/jump.png" type="Texture" id=3]
-[ext_resource path="res://main_pg_sprites/ground_pound.png" type="Texture" id=4]
-[ext_resource path="res://main_pg_sprites/steady.png" type="Texture" id=5]
-[ext_resource path="res://Camera2D.gd" type="Script" id=6]
-[ext_resource path="res://Player.gd" type="Script" id=7]
+[ext_resource type="Texture2D" uid="uid://2dmjyyl0ylkn" path="res://main_pg_sprites/walk_right.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://c1lothq22ls2n" path="res://main_pg_sprites/walk_left.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c5ro4tfyhgn33" path="res://main_pg_sprites/jump.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bcxpe3fo0ca5u" path="res://main_pg_sprites/ground_pound.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bvrqfjyjh5ooc" path="res://main_pg_sprites/steady.png" id="5"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="6"]
+[ext_resource type="Script" path="res://Player.gd" id="7"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 4 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
 "loop": true,
-"name": "crouch",
+"name": &"crouch",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
 "loop": true,
-"name": "ground_pound",
+"name": &"ground_pound",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
 "loop": true,
-"name": "jump",
+"name": &"jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
 "loop": true,
-"name": "steady",
+"name": &"steady",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
 "loop": true,
-"name": "walk",
+"name": &"walk",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 31.5, 31 )
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(64, 63)
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_group_": true
-}
+script = ExtResource("7")
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.2, 0.2 )
-frames = SubResource( 1 )
-animation = "ground_pound"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("1")
+animation = &"steady"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+position = Vector2(0, 0.5)
+shape = SubResource("2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2( 1, 0.5 )
-offset = Vector2( 150, -150 )
-current = true
-drag_margin_v_enabled = true
-script = ExtResource( 6 )
+offset = Vector2(150, -150)
+position_smoothing_enabled = true
+drag_vertical_enabled = true
+script = ExtResource("6")

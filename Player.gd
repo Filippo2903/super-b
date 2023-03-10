@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 const GRAVITY = 3900
 
@@ -20,12 +20,12 @@ const Status = {
 	DEAD = 0
 }
 
-onready var animation = $AnimatedSprite
-onready var hitbox = $CollisionShape2D
+@onready var animation = $AnimatedSprite2D
+@onready var hitbox = $CollisionShape2D
 
 var status
 var direction = Direction.STEADY
-var velocity = Vector2.ZERO
+
 
 var jumping = false
 var crouch = false
@@ -61,7 +61,7 @@ func animate():
 		animation.animation = "jump"
 		animation.stop()
 	
-	elif abs(velocity.x) > 60:
+	elif abs(velocity.x) > 100:
 		animation.play("walk")
 	
 	else:
@@ -85,7 +85,7 @@ func move(delta):
 		
 	if (Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("shift")) and not is_on_floor():
 		if status == 1:
-				scale = Vector2(1,1)
+			scale = Vector2(1,1)
 		if status >= 2:
 			scale = Vector2(1,1)
 		ground_pound = true
@@ -99,7 +99,8 @@ func move(delta):
 		animation.rotation = 0 
 		velocity.x = 0
 		velocity.y = GROUND_POUND_SPEED
-		velocity = move_and_slide(velocity, Vector2.UP)
+		set_up_direction(Vector2.UP)
+		move_and_slide()
 		return
 	
 	
@@ -118,24 +119,28 @@ func move(delta):
 			position.y -=32
 			return
 		scale.y = 1
-		velocity.x = lerp(velocity.x, 0, 0.1)
-		print(velocity)
-		velocity = move_and_slide(velocity, Vector2.UP)
+		velocity.x = lerpf(velocity.x, 0, 0.1)
+		set_up_direction(Vector2.UP)
+		move_and_slide()
 		return
 	
 	if Input.is_action_pressed("ui_right"):
-		direction += Direction.RIGHT
+		direction = Direction.RIGHT
 	if Input.is_action_pressed("ui_left"):
-		direction += Direction.LEFT
+		direction = Direction.LEFT
 	
-	if Input.is_action_just_pressed("ui_select") and is_on_floor():
+	if Input.is_action_just_pressed("ui_select") and is_on_wall() and not is_on_floor():
+		velocity.y = -JUMP_SPEED
+		velocity.x = -JUMP_SPEED * direction
+	
+	elif Input.is_action_just_pressed("ui_select") and is_on_floor():
 		jumping = true
 		velocity.y = -JUMP_SPEED
 	elif Input.is_action_just_released("ui_select") and velocity.y < 0:
-		velocity.y = lerp(velocity.y, 0, 0.4)
+		velocity.y = lerpf(velocity.y, 0, 0.4)
 	
-	velocity.x = lerp(velocity.x, WALK_SPEED * direction, 0.1)
-	
+	velocity.x = lerpf(velocity.x, WALK_SPEED * direction, 0.05)
+	print(velocity)
 	if rebound:
 		rebound_pause += delta
 		if rebound_pause < 2 * delta:
@@ -144,11 +149,12 @@ func move(delta):
 		else:
 			rebound = false
 			rebound_pause = 0
-		move_and_slide(velocity, Vector2.UP)
+		set_up_direction(Vector2.UP)
+		move_and_slide()
 		return
 		
-	velocity = move_and_slide(velocity, Vector2.UP)
-
+	set_up_direction(Vector2.UP)
+	move_and_slide()
 
 func status_down():
 	if status > Status.DEAD:
@@ -182,6 +188,7 @@ func respawn():
 func _ready():
 	# DEBUG
 	status = Status.NORMAL
+	
 	match_status()
 
 func _physics_process(delta):
