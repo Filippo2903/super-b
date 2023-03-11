@@ -34,7 +34,7 @@ var ground_pound_pause = 0
 var rebound = false
 var rebound_pause = 0
 
-var just_hitted=0
+var just_hitted = false
 
 func hit():
 	just_hitted=true
@@ -44,6 +44,10 @@ func animate():
 	if velocity.x != 0:
 		animation.flip_h = velocity.x < 0
 	
+	if not crouch and not ground_pound:
+		animation.scale=Vector2(0.2, 0.2)
+	elif status > 1:
+		animation.scale=Vector2(0.25, 0.25)
 	if crouch:
 		animation.animation = "crouch"
 		animation.stop()
@@ -55,7 +59,6 @@ func animate():
 			return
 		animation.animation = "ground_pound"
 		animation.stop()
-		
 		
 	elif not is_on_floor():
 		animation.animation = "jump"
@@ -104,12 +107,15 @@ func move(delta):
 		return
 	
 	
-	if (Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("shift"))  and status > 1:
+	if Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("shift"):
+		
 		position.y +=32
+		scale.y = scale.y / 2
 		crouch = true
 		
 		
 	if crouch:
+		print(status / 2)
 		if (Input.is_action_just_released("ui_down") or Input.is_action_just_released("shift")) or just_hitted:
 			crouch = false
 			if status == 1:
@@ -118,11 +124,14 @@ func move(delta):
 				scale.y = 2
 			position.y -=32
 			return
-		scale.y = 1
+		
+		
 		velocity.x = lerpf(velocity.x, 0, 0.1)
 		set_up_direction(Vector2.UP)
 		move_and_slide()
 		return
+	
+	just_hitted = 0
 	
 	if Input.is_action_pressed("ui_right"):
 		direction = Direction.RIGHT
@@ -139,8 +148,8 @@ func move(delta):
 	elif Input.is_action_just_released("ui_select") and velocity.y < 0:
 		velocity.y = lerpf(velocity.y, 0, 0.4)
 	
-	velocity.x = lerpf(velocity.x, WALK_SPEED * direction, 0.05)
-	print(velocity)
+	velocity.x = lerpf(velocity.x, WALK_SPEED * direction, 0.04)
+	
 	if rebound:
 		rebound_pause += delta
 		if rebound_pause < 2 * delta:
@@ -151,6 +160,7 @@ func move(delta):
 			rebound_pause = 0
 		set_up_direction(Vector2.UP)
 		move_and_slide()
+		velocity.x = 0
 		return
 		
 	set_up_direction(Vector2.UP)
@@ -178,7 +188,7 @@ func match_status():
 			scale.y = 1
 		Status.DEAD:
 			respawn()
-
+	
 func respawn():
 	position.x = 500
 	position.y = -500

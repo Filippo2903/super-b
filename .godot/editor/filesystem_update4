@@ -1,7 +1,5 @@
 res://default_env.tres
 res://super_b.tscn
-res://Player.gd
-res://Marta.gd
-res://Marta.tscn
 res://Player.tscn
-res://Camera2D.gd
+res://Marta.tscn
+res://Player.gd

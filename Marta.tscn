@@ -79,7 +79,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopCollision"]
-position = Vector2(0, -0.634766)
+position = Vector2(0, -4.63477)
 shape = SubResource("5")
 
 [connection signal="body_entered" from="SideCollision" to="." method="_on_SideCollision_body_entered"]
