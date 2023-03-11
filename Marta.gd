@@ -14,9 +14,10 @@ const Direction = {
 }
 
 const Status = {
-	NORMAL = 2,
-	STEADY = 1,
-	ROLLING = 0
+	NORMAL = 3,
+	STEADY = 2,
+	ROLLING = 1,
+	DEAD = 0
 }
 
 @onready var animation = $AnimatedSprite2D
@@ -26,6 +27,7 @@ var direction = Direction.LEFT
 
 var speed = Speed.WALK
 
+var collided_body
 
 func _ready():
 	animation.play("walk")
@@ -33,22 +35,16 @@ func _ready():
 	change_status()
 
 func _on_SideCollision_body_entered(body):
-	if body.name != "Player":
-		return
 	
 	if status != Status.STEADY:
 		body.hit()
 	else:
-		if body.position.x < position.x:
-			direction = 1
-		else:
-			direction = -1
 		hit()
-
+	
 func _on_TopCollision_body_entered(body):
 	body.rebound = true
 	hit()
-
+	
 func change_status():
 	match status:
 		Status.NORMAL:
@@ -57,6 +53,8 @@ func change_status():
 			speed = Speed.STEADY
 		Status.ROLLING:
 			speed = Speed.ROLL
+		Status.DEAD:
+			queue_free()
 			
 func hit():
 	if status == Status.ROLLING:
@@ -64,6 +62,10 @@ func hit():
 	else:
 		status -= 1
 	
+	change_status()
+
+func kill():
+	status = Status.DEAD
 	change_status()
 
 func animate():

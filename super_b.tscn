@@ -300,3 +300,4 @@ position = Vector2(-21, -564)
 
 [node name="Power_up" parent="." instance=ExtResource("4")]
 position = Vector2(-402, -404)
+collision_layer = 4

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcovpwh6fov6t"]
+
+[ext_resource type="Script" path="res://Bullet.gd" id="1_q5iy1"]
+[ext_resource type="Texture2D" uid="uid://ov2kbpe6uwri" path="res://Golf_ricc.png" id="1_wqo3c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lx6d2"]
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_q5iy1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lx6d2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(0.0293686, 0.0458716)
+texture = ExtResource("1_wqo3c")

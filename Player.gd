@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 const GRAVITY = 3900
 
+const bulletPath = preload('res://Bullet.tscn')
+
 const WALK_SPEED = 650
 const JUMP_SPEED = 1500
 const GROUND_POUND_SPEED = 1300
@@ -25,7 +27,7 @@ const Status = {
 
 var status
 var direction = Direction.STEADY
-
+var direction_Watching
 
 var jumping = false
 var crouch = false
@@ -115,20 +117,19 @@ func move(delta):
 		
 		
 	if crouch:
-		print(status / 2)
 		if (Input.is_action_just_released("ui_down") or Input.is_action_just_released("shift")) or just_hitted:
 			crouch = false
 			if status == 1:
 				scale.y = status
 			if status >= 2:
 				scale.y = 2
-			position.y -=32
+			position.y -= 32
 			return
 		
 		
 		velocity.x = lerpf(velocity.x, 0, 0.1)
 		set_up_direction(Vector2.UP)
-		move_and_slide()
+		move_and_collide(velocity)
 		return
 	
 	just_hitted = 0
@@ -141,6 +142,7 @@ func move(delta):
 	if Input.is_action_just_pressed("ui_select") and is_on_wall() and not is_on_floor():
 		velocity.y = -JUMP_SPEED
 		velocity.x = -JUMP_SPEED * direction
+	
 	
 	elif Input.is_action_just_pressed("ui_select") and is_on_floor():
 		jumping = true
@@ -166,6 +168,17 @@ func move(delta):
 	set_up_direction(Vector2.UP)
 	move_and_slide()
 
+func ability():
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
+	
+func shoot():
+	var positonOffset = Vector2(50 * direction_Watching,0)
+	var bullet = bulletPath.instantiate()
+	get_parent().add_child(bullet)
+	bullet.position = position + positonOffset
+	bullet.direction = direction_Watching
+	
 func status_down():
 	if status > Status.DEAD:
 		status -= 1
@@ -205,7 +218,9 @@ func _physics_process(delta):
 	velocity.y += GRAVITY * delta
 
 func _process(delta):
+	direction_Watching = 1 - (int (animation.flip_h) *2)
 	move(delta)
+	ability()
 	animate()
 	debug_reset()
 
