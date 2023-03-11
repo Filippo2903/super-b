@@ -2,7 +2,6 @@ res://default_env.tres
 res://super_b.tscn
 res://Player.tscn
 res://Marta.tscn
-res://Player.gd
 res://Bullet.tscn
 res://Bullet.gd
 res://Marta.gd

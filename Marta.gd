@@ -61,10 +61,11 @@ func hit():
 		status += 1
 	else:
 		status -= 1
-	
+	$AudioStreamPlayer2D.play()
 	change_status()
 
 func kill():
+	$AudioStreamPlayer2D.play()
 	status = Status.DEAD
 	change_status()
 
@@ -87,3 +88,4 @@ func move(delta):
 func _process(delta):
 	move(delta)
 	animate()
+	

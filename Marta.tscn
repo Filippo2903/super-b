@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyujhxt3hjqta"]
+[gd_scene load_steps=11 format=3 uid="uid://cyujhxt3hjqta"]
 
 [ext_resource type="Texture2D" uid="uid://dd8m631cia6nw" path="res://marta/walk_left.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://b1xrbopsfx278" path="res://marta/walk_right.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://chm84rpc670vo" path="res://marta/steady.png" id="3"]
 [ext_resource type="Script" path="res://Marta.gd" id="4"]
+[ext_resource type="AudioStream" uid="uid://dyntnbeuf1wip" path="res://audio/miao.mp3" id="5_a4xer"]
 
 [sub_resource type="SpriteFrames" id="1"]
 animations = [{
@@ -82,6 +83,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopCollision"]
 position = Vector2(0, -4.63477)
 shape = SubResource("5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_a4xer")
 
 [connection signal="body_entered" from="SideCollision" to="." method="_on_SideCollision_body_entered"]
 [connection signal="body_entered" from="TopCollision" to="." method="_on_TopCollision_body_entered"]

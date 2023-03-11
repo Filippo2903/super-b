@@ -27,7 +27,7 @@ const Status = {
 
 var status
 var direction = Direction.STEADY
-var direction_Watching
+var direction_watching
 
 var jumping = false
 var crouch = false
@@ -35,6 +35,8 @@ var ground_pound = false
 var ground_pound_pause = 0
 var rebound = false
 var rebound_pause = 0
+var shot = false
+var shot_pause = 0
 
 var just_hitted = false
 
@@ -129,7 +131,7 @@ func move(delta):
 		
 		velocity.x = lerpf(velocity.x, 0, 0.1)
 		set_up_direction(Vector2.UP)
-		move_and_collide(velocity)
+		move_and_slide()
 		return
 	
 	just_hitted = 0
@@ -167,17 +169,24 @@ func move(delta):
 		
 	set_up_direction(Vector2.UP)
 	move_and_slide()
-
-func ability():
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
 	
+func ability(delta):
+	if Input.is_action_just_pressed("shoot") and shot == false:
+		shot = true
+		shoot()
+	if shot:
+		
+		if shot_pause > 0.24:
+			shot_pause = 0
+			shot = false
+		else:
+			shot_pause += delta
 func shoot():
-	var positonOffset = Vector2(50 * direction_Watching,0)
+	var positonOffset = Vector2(32 * direction_watching,0)
 	var bullet = bulletPath.instantiate()
 	get_parent().add_child(bullet)
 	bullet.position = position + positonOffset
-	bullet.direction = direction_Watching
+	bullet.direction = direction_watching
 	
 func status_down():
 	if status > Status.DEAD:
@@ -218,9 +227,9 @@ func _physics_process(delta):
 	velocity.y += GRAVITY * delta
 
 func _process(delta):
-	direction_Watching = 1 - (int (animation.flip_h) *2)
+	direction_watching = 1 - (int (animation.flip_h) *2)
 	move(delta)
-	ability()
+	ability(delta)
 	animate()
 	debug_reset()
 
