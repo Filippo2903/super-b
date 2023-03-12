@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://ce0o4gv5ur1qb" path="res://toppng.com-fire-ball-png-super-mario-bros-fireball-1156x808.png" id="2_4ohfr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lx6d2"]
-radius = 4.0
+radius = 8.06226
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5goqc"]
-radius = 31.0161
+radius = 32.0624
 
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 8
@@ -22,11 +22,11 @@ position = Vector2(-8, 0)
 scale = Vector2(0.0825342, 0.0825342)
 texture = ExtResource("2_4ohfr")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="MobDetecter" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MobDetecter"]
 shape = SubResource("CircleShape2D_5goqc")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="MobDetecter" to="." method="_on_mob_detected"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dhmv0cgcpxf5r"]
+[gd_scene load_steps=18 format=3 uid="uid://dhmv0cgcpxf5r"]
 
 [ext_resource type="Texture2D" uid="uid://i20s4ajqyymi" path="res://world_sprites/Grass_Block_(side_texture)_JE2_B.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://c1nutyaovxq2n" path="res://Player.tscn" id="2"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://2q3lqk5mmv7y" path="res://background/Background_2.png" id="9_ykyfc"]
 [ext_resource type="Texture2D" uid="uid://donx842moklhc" path="res://world_sprites/Big_Dripleaf_(stem_texture)_JE1 (1).png" id="16"]
 [ext_resource type="Texture2D" uid="uid://dqyuaknrxqsim" path="res://world_sprites/Big_Dripleaf_(top_texture)_JE1 (1).png" id="17"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rqeie"]
+absorbent = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bn8mk"]
 texture = ExtResource("1")
@@ -259,6 +262,8 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="4"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_rqeie")
 sources/0 = SubResource("TileSetAtlasSource_bn8mk")
 sources/1 = SubResource("TileSetAtlasSource_4oefy")
 sources/2 = SubResource("TileSetAtlasSource_nlg8j")

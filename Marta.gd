@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-#const GRAVITY = 3900
+const GRAVITY = 3900
 
 const Speed = {
 	STEADY = 0,
@@ -14,7 +14,7 @@ const Direction = {
 }
 
 const Status = {
-	NORMAL = 3,
+	WALKING = 3,
 	STEADY = 2,
 	ROLLING = 1,
 	DEAD = 0
@@ -22,7 +22,7 @@ const Status = {
 
 @onready var animation = $AnimatedSprite2D
 
-var status = Status.NORMAL
+var status = Status.WALKING
 var direction = Direction.LEFT
 
 var speed = Speed.WALK
@@ -30,48 +30,45 @@ var speed = Speed.WALK
 var collided_body
 
 func _ready():
-	animation.play("walk")
-	status = Status.NORMAL
-	change_status()
+	set_up_direction(Vector2.UP)
+	status = Status.WALKING
+	set_speed()
 
 func _on_SideCollision_body_entered(body):
-	
 	if status != Status.STEADY:
 		body.hit()
 	else:
 		hit()
-	
+
 func _on_TopCollision_body_entered(body):
 	body.rebound = true
 	hit()
-	
-func change_status():
+
+func set_speed():
 	match status:
-		Status.NORMAL:
+		Status.WALKING:
 			speed = Speed.WALK
 		Status.STEADY:
 			speed = Speed.STEADY
 		Status.ROLLING:
 			speed = Speed.ROLL
-		Status.DEAD:
-			queue_free()
 			
+
 func hit():
 	if status == Status.ROLLING:
 		status += 1
 	else:
 		status -= 1
 	$AudioStreamPlayer2D.play()
-	change_status()
+	set_speed()
 
 func kill():
 	$AudioStreamPlayer2D.play()
-	status = Status.DEAD
-	change_status()
+	queue_free()
 
 func animate():
-	animation.flip_h = direction == 1
-	if status == Status.NORMAL:
+	animation.flip_h = direction == Direction.RIGHT
+	if status == Status.WALKING:
 		animation.play("walk")
 	else:
 		animation.play("roll")
@@ -81,11 +78,11 @@ func move(delta):
 		direction *= -1
 	
 	velocity.x = speed * direction
-	velocity.y = 0
-	set_up_direction(Vector2.UP)
+	velocity.y += GRAVITY * delta
 	move_and_slide()
 
 func _process(delta):
-	move(delta)
 	animate()
-	
+
+func _physics_process(delta):
+	move(delta)

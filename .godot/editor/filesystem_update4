@@ -4,4 +4,5 @@ res://Player.tscn
 res://Marta.tscn
 res://Bullet.tscn
 res://Bullet.gd
+res://Player.gd
 res://Marta.gd
