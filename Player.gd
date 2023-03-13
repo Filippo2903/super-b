@@ -27,7 +27,7 @@ const Status = {
 
 var status
 var direction = Direction.STEADY
-var direction_watching
+var direction_watching = Direction.RIGHT
 
 var crouch = false
 var ground_pound = false
@@ -68,26 +68,28 @@ func animate():
 		animation.stop()
 
 func resize_hitbox():
-	var height
 	
 	if status == Status.SMALL:
-		height = 1
-	else:
-		height = 2
+		if crouch:
+			scale.y = 1 * 0.75
+		elif is_on_floor():
+			position.y -= 32
+			scale.y = 1
+		return
 	
 	if crouch:
 		position.y += 32
-		scale.y = float(height) / 2
+		scale.y = 1
 	elif ground_pound:
 		scale.y = 1
 	elif is_on_floor():
-		scale.y = height
 		position.y -= 32
+		scale.y = 2
 
 func move(delta):
 	direction = Direction.STEADY
 	
-	if (Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("shift")):
+	if Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("shift"):
 		if is_on_floor():
 			crouch = true
 		else:
@@ -99,24 +101,31 @@ func move(delta):
 		resize_hitbox()
 	
 	if ground_pound:
-		ground_pound_pause += delta
 		if ground_pound_pause < 15 * delta:
+			ground_pound_pause += delta
 			animation.rotate(0.447)
 			return
-		animation.rotation = 0 
-		velocity.x = 0
-		velocity.y = GROUND_POUND_SPEED
+		
+		animation.rotation = 0
+		velocity = Vector2(0, GROUND_POUND_SPEED)
 		move_and_slide()
+		
 		if is_on_floor():
+			if ground_pound_pause < 40 * delta:
+				ground_pound_pause += delta
+				return
+			
 			ground_pound = false
 			ground_pound_pause = 0
+			resize_hitbox()
+			
 			if Input.is_action_pressed("ui_down") or Input.is_action_pressed("shift"):
 				crouch = true
-			resize_hitbox()
+				resize_hitbox()
 		return
 	
 	if crouch and not just_hitted:
-		velocity.x = lerpf(velocity.x, 0, 0.1)
+		velocity.x = lerpf(velocity.x, 0, 0.07)
 		move_and_slide()
 		return
 	
@@ -209,9 +218,10 @@ func _ready():
 
 func _physics_process(delta):
 	velocity.y += GRAVITY * delta
+	if is_on_wall():
+		velocity.y /= 1.5
 
 func _process(delta):
-	direction_watching = 1 - (int (animation.flip_h) *2)
 	move(delta)
 	ability(delta)
 	animate()
@@ -222,7 +232,7 @@ func debug_keys():
 		status = Status.NORMAL
 		match_status()
 		respawn()
-	if Input.is_key_label_pressed(KEY_Q):
+	if Input.is_key_pressed(KEY_Q):
 		var marta = preload('res://Marta.tscn').instantiate()
 		get_parent().add_child(marta)
 		marta.position = Vector2(-31, -100)
