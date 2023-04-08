@@ -14,6 +14,12 @@ config/name="Prova 1"
 run/main_scene="res://super_b.tscn"
 config/features=PackedStringArray("4.0")
 
+[display]
+
+window/size/viewport_width=1420
+window/size/viewport_height=799
+window/stretch/mode="viewport"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
@@ -64,6 +70,7 @@ shoot={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Mob"
 2d_physics/layer_4="Bullet"
+2d_physics/layer_5="PowerUp"
 
 [physics]
 

@@ -1,18 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://bcovpwh6fov6t"]
 
-[ext_resource type="Script" path="res://Bullet.gd" id="1_q5iy1"]
+[ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_c20t4"]
 [ext_resource type="Texture2D" uid="uid://ce0o4gv5ur1qb" path="res://toppng.com-fire-ball-png-super-mario-bros-fireball-1156x808.png" id="2_4ohfr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lx6d2"]
-radius = 8.06226
+radius = 23.0868
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5goqc"]
-radius = 32.0624
+radius = 23.0217
 
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 5
-script = ExtResource("1_q5iy1")
+script = ExtResource("1_c20t4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lx6d2")

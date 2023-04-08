@@ -1,6 +1,9 @@
 res://default_env.tres
-res://Player.tscn
-res://Player.gd
-res://super_b.tscn
+res://level_1.tscn
 res://Marta.tscn
 res://Bullet.tscn
+res://Player.tscn
+res://powerup.tscn
+res://scripts/level_1.gd
+res://scripts/TileMap.gd
+res://scripts/Player.gd
