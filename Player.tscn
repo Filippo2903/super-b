@@ -64,21 +64,25 @@ size = Vector2(54, 63)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 133
 script = ExtResource("1_joqbh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("1")
-animation = &"steady"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 show_behind_parent = true
-offset = Vector2(150, -150)
-limit_top = -650
-limit_bottom = 250
+offset = Vector2(150, 0)
+zoom = Vector2(0.75, 0.75)
+limit_left = -200
+limit_top = -750
+limit_right = 12500
+limit_bottom = 100
 position_smoothing_enabled = true
-drag_vertical_enabled = true
+position_smoothing_speed = 3.0
+editor_draw_limits = true

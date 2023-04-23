@@ -1,9 +1,11 @@
 res://default_env.tres
-res://level_1.tscn
+res://scripts/Marta.gd
+res://doomba.tscn
+res://scripts/doomba.gd
+res://Level_1.tscn
+res://scripts/level_1.gd
 res://Marta.tscn
 res://Bullet.tscn
 res://Player.tscn
 res://powerup.tscn
-res://scripts/level_1.gd
-res://scripts/TileMap.gd
-res://scripts/Player.gd
+res://Level_2.tscn

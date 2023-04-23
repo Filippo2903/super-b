@@ -27,8 +27,6 @@ var direction = Direction.LEFT
 
 var speed = Speed.WALK
 
-var collided_body
-
 func _ready():
 	set_up_direction(Vector2.UP)
 	status = Status.WALKING
@@ -60,6 +58,9 @@ func hit():
 		status -= 1
 	$AudioStreamPlayer2D.play()
 	set_speed()
+
+func free():
+	queue_free()
 
 func animate():
 	animation.flip_h = direction == Direction.RIGHT

@@ -160,6 +160,9 @@ func move(delta):
 	move_and_slide()
 
 func ability(delta):
+	if status != Status.POWER_UP:
+		return
+	
 	if Input.is_action_just_pressed("shoot") and shot == false:
 		shoot()
 		shot = true

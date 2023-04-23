@@ -11,7 +11,7 @@ size = Vector2(64, 52)
 size = Vector2(64, 52)
 
 [node name="PowerUp" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 16
 script = ExtResource("1_v3li4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -21,7 +21,7 @@ shape = SubResource("RectangleShape2D_h7wx3")
 texture = ExtResource("2_k18j1")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 16
+collision_layer = 128
 collision_mask = 2
 script = ExtResource("3_g8cft")
 
