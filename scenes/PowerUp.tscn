@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bib6u23wy1gka"]
+[gd_scene load_steps=5 format=3 uid="uid://ckfrtlmagmnp4"]
 
-[ext_resource type="Script" path="res://scripts/PowerUp.gd" id="1_v3li4"]
-[ext_resource type="Texture2D" uid="uid://bwm251hj2sna0" path="res://assets/powerup.png" id="2_k18j1"]
-[ext_resource type="Script" path="res://scripts/Area2D.gd" id="3_g8cft"]
+[ext_resource type="Script" path="res://scripts/power_up.gd" id="1_gjtxu"]
+[ext_resource type="Texture2D" uid="uid://bwm251hj2sna0" path="res://assets/powerup.png" id="2_20d78"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7wx3"]
 size = Vector2(64, 52)
@@ -12,21 +11,20 @@ size = Vector2(64, 52)
 
 [node name="PowerUp" type="CharacterBody2D"]
 collision_layer = 16
-script = ExtResource("1_v3li4")
+script = ExtResource("1_gjtxu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_h7wx3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_k18j1")
+texture = ExtResource("2_20d78")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 128
 collision_mask = 2
-script = ExtResource("3_g8cft")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visibility_layer = 16
 shape = SubResource("RectangleShape2D_kl83d")
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_hit"]

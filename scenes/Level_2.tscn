@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://1xdphao0xrdh"]
+[gd_scene load_steps=11 format=3 uid="uid://bs4gx7eb5y6na"]
 
-[ext_resource type="Texture2D" uid="uid://2q3lqk5mmv7y" path="res://assets/background/Background_2.png" id="1_q6h7m"]
-[ext_resource type="Texture2D" uid="uid://cbaw0t5sydlnn" path="res://assets/background/Background_1.png" id="2_kg71t"]
-[ext_resource type="PackedScene" uid="uid://brpc7lq4juo51" path="res://Player.tscn" id="3_k0fkw"]
-[ext_resource type="Texture2D" uid="uid://ne0h53bwi3bo" path="res://assets/tileset.png" id="4_o2q8b"]
-[ext_resource type="Script" path="res://scripts/TileMap.gd" id="5_oyj6o"]
+[ext_resource type="Texture2D" uid="uid://2q3lqk5mmv7y" path="res://assets/background/Background_2.png" id="1_bshbq"]
+[ext_resource type="Texture2D" uid="uid://cbaw0t5sydlnn" path="res://assets/background/Background_1.png" id="2_w66bq"]
+[ext_resource type="PackedScene" uid="uid://jetiech2pdka" path="res://scenes/Player.tscn" id="3_rw0g7"]
+[ext_resource type="Texture2D" uid="uid://ne0h53bwi3bo" path="res://assets/tileset.png" id="4_7168i"]
+[ext_resource type="Script" path="res://scripts/tile_map.gd" id="5_ngajl"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ge5u7"]
 tile_data = PackedInt32Array(0, 196608, 0, 1, 262144, 0)
@@ -14,7 +14,7 @@ tile_data = PackedInt32Array(0, 196608, 1, 1, 262144, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4fk5"]
 resource_name = "Overword"
-texture = ExtResource("4_o2q8b")
+texture = ExtResource("4_7168i")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -88,7 +88,7 @@ motion_mirroring = Vector2(1980, 0)
 [node name="white_clouds" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
 position = Vector2(751, -400)
 scale = Vector2(4, 4)
-texture = ExtResource("1_q6h7m")
+texture = ExtResource("1_bshbq")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.03, 1)
@@ -97,13 +97,13 @@ motion_mirroring = Vector2(1980, 0)
 [node name="light_blue_clouds" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 position = Vector2(751, -400)
 scale = Vector2(4, 4)
-texture = ExtResource("2_kg71t")
+texture = ExtResource("2_w66bq")
 
-[node name="Player" parent="." instance=ExtResource("3_k0fkw")]
+[node name="Player" parent="." instance=ExtResource("3_rw0g7")]
 position = Vector2(3, -37)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_qeh7e")
 format = 2
 layer_0/tile_data = PackedInt32Array(-917510, 131072, 1, -851974, 131072, 1, -786438, 131072, 1, -720902, 131072, 1, -655366, 131072, 1, -589830, 131072, 1, -524294, 131072, 1, -458758, 131072, 1, -393222, 131072, 1, -327686, 131072, 1, -262150, 131072, 1, -196614, 131072, 1, -131078, 131072, 1, -65542, 131072, 1, -6, 131072, 1, 65530, 65536, 0, 131066, 65536, 1, 196602, 65536, 1, 65531, 65536, 0, 196603, 65536, 1, 65532, 65536, 0, 65533, 65536, 0, 65534, 65536, 0, 65535, 65536, 0, 0, 65536, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 5, 65536, 0, 65541, 65536, 1, 6, 65536, 0, 65542, 65536, 1, 131078, 65536, 1, 7, 65536, 0, 65543, 65536, 1, 131079, 65536, 1, 8, 65536, 0, 65544, 65536, 1, 131080, 65536, 1, 9, 65536, 0, 65545, 65536, 1, 131081, 65536, 1, 10, 65536, 0, 65546, 65536, 1, 131082, 65536, 1, 11, 65536, 0, 65547, 65536, 1, 131083, 65536, 1, 12, 65536, 0, 65548, 65536, 1, 131084, 65536, 1, 65538, 65536, 1, 65537, 65536, 1, 65539, 65536, 1, 65536, 65536, 1, 131071, 65536, 1, 65540, 65536, 1, 131077, 65536, 1, 131076, 65536, 1, 131075, 65536, 1, 131074, 65536, 1, 131073, 65536, 1, 131072, 65536, 1, 196607, 65536, 1, 196606, 65536, 1, 196605, 65536, 1, 196604, 65536, 1, 131070, 65536, 1, 131068, 65536, 1, 131067, 65536, 1, 131069, 65536, 1)
-script = ExtResource("5_oyj6o")
+script = ExtResource("5_ngajl")

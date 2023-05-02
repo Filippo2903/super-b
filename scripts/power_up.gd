@@ -18,3 +18,7 @@ func _physics_process(delta):
 	velocity.x = SPEED * direction
 	velocity.y += GRAVITY * delta
 	move_and_slide()
+
+func _on_hit(body):
+	body.status_up()
+	queue_free()

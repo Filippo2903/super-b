@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="Prova 1"
-run/main_scene="res://super_b.tscn"
 config/features=PackedStringArray("4.0")
 
 [display]

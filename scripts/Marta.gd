@@ -1,16 +1,9 @@
-extends CharacterBody2D
-
-const GRAVITY = 3900
+extends "res://scripts/mob.gd"
 
 const Speed = {
 	STEADY = 0,
 	WALK = 150,
 	ROLL = 800
-}
-
-const Direction = {
-	LEFT = -1,
-	RIGHT = 1
 }
 
 const Status = {
@@ -23,7 +16,6 @@ const Status = {
 @onready var animation = $AnimatedSprite2D
 
 var status = Status.WALKING
-var direction = Direction.LEFT
 
 var speed = Speed.WALK
 
@@ -59,26 +51,22 @@ func hit():
 	$AudioStreamPlayer2D.play()
 	set_speed()
 
-func free():
-	queue_free()
+func flip():
+	direction *= -1
+	scale.x *= -1
 
 func animate():
-	animation.flip_h = direction == Direction.RIGHT
 	if status == Status.WALKING:
 		animation.play("walk")
 	else:
 		animation.play("roll")
 
-func move(delta):
-	if is_on_wall():
-		direction *= -1
-	
-	velocity.x = speed * direction
-	velocity.y += GRAVITY * delta
-	move_and_slide()
-
 func _process(_delta):
 	animate()
 
 func _physics_process(delta):
-	move(delta)
+	move(delta, speed)
+
+func _on_edge(area):
+	if status == Status.WALKING:
+		flip()

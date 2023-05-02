@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const GRAVITY = 3900
 
-const bulletPath = preload('res://Bullet.tscn')
+const bulletPath = preload('res://scenes/Bullet.tscn')
 
 const WALK_SPEED = 650
 const JUMP_SPEED = 1500
@@ -215,7 +215,7 @@ func tilemap_interactions():
 	if is_on_ceiling():
 		var collider = get_last_slide_collision().get_collider()
 		if collider is TileMap and collider.has_method("hit"):
-			collider.hit(position)
+			collider.hit(position, direction_watching)
 
 func _ready():
 	# DEBUG
@@ -235,14 +235,3 @@ func _process(delta):
 	ability(delta)
 	tilemap_interactions()
 	animate()
-	debug_keys()
-
-func debug_keys():
-	if Input.is_key_pressed(KEY_R):
-		status = Status.NORMAL
-		match_status()
-		respawn()
-	if Input.is_key_pressed(KEY_Q):
-		var marta = preload('res://Marta.tscn').instantiate()
-		get_parent().add_child(marta)
-		marta.position = Vector2(-31, -100)

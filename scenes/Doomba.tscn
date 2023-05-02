@@ -1,53 +1,32 @@
-[gd_scene load_steps=11 format=3 uid="uid://tqjdhphqymko"]
+[gd_scene load_steps=10 format=3 uid="uid://tqjdhphqymko"]
 
-[ext_resource type="Script" path="res://scripts/doomba.gd" id="1_r7g2f"]
-[ext_resource type="Texture2D" uid="uid://bdhwkfptnpoqv" path="res://assets/doomba/Doomba_left.png" id="2_0r80f"]
-[ext_resource type="Texture2D" uid="uid://bo1nk8yc7sngj" path="res://assets/doomba/explosion.png" id="2_nolol"]
-[ext_resource type="Texture2D" uid="uid://dtthl1l0vdr2e" path="res://assets/doomba/Doonba_steady.png" id="4_3mcja"]
-[ext_resource type="Texture2D" uid="uid://cwsjjvj8m7akl" path="res://assets/doomba/Doomba_right.png" id="5_qaruk"]
+[ext_resource type="Script" path="res://scripts/doomba.gd" id="1_pra8p"]
+[ext_resource type="Texture2D" uid="uid://bdhwkfptnpoqv" path="res://assets/doomba/Doomba_left.png" id="3_edlge"]
+[ext_resource type="Texture2D" uid="uid://dtthl1l0vdr2e" path="res://assets/doomba/Doonba_steady.png" id="4_gu3v4"]
+[ext_resource type="Texture2D" uid="uid://cwsjjvj8m7akl" path="res://assets/doomba/Doomba_right.png" id="5_1rxf8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nqp0"]
+size = Vector2(64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_twvy3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_nolol")
+"texture": ExtResource("3_edlge")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_nolol")
+"texture": ExtResource("4_gu3v4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_nolol")
+"texture": ExtResource("5_1rxf8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_nolol")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_nolol")
-}],
-"loop": false,
-"name": &"explosion",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_0r80f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_3mcja")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_qaruk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_3mcja")
+"texture": ExtResource("4_gu3v4")
 }],
 "loop": true,
 "name": &"walk",
 "speed": 5.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nqp0"]
-size = Vector2(64, 64)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_vffmi"]
 a = Vector2(-30, -64)
@@ -63,15 +42,15 @@ size = Vector2(63.5856, 0.730461)
 [node name="Doomba" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_r7g2f")
+script = ExtResource("1_pra8p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6nqp0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.19209e-07, -4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_twvy3")
-animation = &"explosion"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_6nqp0")
+animation = &"walk"
 
 [node name="SideCollision" type="Area2D" parent="."]
 scale = Vector2(1, 0.5)
@@ -95,7 +74,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopCollision"]
 position = Vector2(0, -9)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_c3n8p")
 
 [connection signal="body_entered" from="SideCollision" to="." method="_on_SideCollision_body_entered" flags=18]
