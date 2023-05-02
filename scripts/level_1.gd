@@ -4,7 +4,7 @@ const MARTA_DATA_PATH = preload('res://scenes/Marta.tscn')
 const DOOMBA_DATA_PATH = preload('res://scenes/Doomba.tscn')
 
 const DEAD = 0
-
+var i = 0
 var mob = [
 	{ position = Vector2(1750, -32), type = DOOMBA_DATA_PATH, is_spawned = false, is_dead = false },
 	{ position = Vector2(2500, -32), type = DOOMBA_DATA_PATH, is_spawned = false, is_dead = false },
@@ -45,4 +45,7 @@ func _ready():
 	spawned_mob.resize(len(mob))
 
 func _process(_delta):
+	i = i + 1
+	if (_delta*i==5):
+		get_tree().change_scene_to_file("res://scenes/Level_2.tscn")
 	spawn_mob()

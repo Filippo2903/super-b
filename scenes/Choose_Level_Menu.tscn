@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7psewih0gany"]
+
+[ext_resource type="Texture2D" uid="uid://bvrqfjyjh5ooc" path="res://assets/bizio/steady.png" id="1_7pn4w"]
+[ext_resource type="Texture2D" uid="uid://2dmjyyl0ylkn" path="res://assets/bizio/walk_right.png" id="2_6edgm"]
+[ext_resource type="Texture2D" uid="uid://c1lothq22ls2n" path="res://assets/bizio/walk_left.png" id="3_2v8oi"]
+[ext_resource type="Script" path="res://scripts/player_menu.gd" id="4_o3djh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ixrvb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7pn4w")
+}],
+"loop": true,
+"name": &"steady",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7pn4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6edgm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_7pn4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2v8oi")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Choose_Level_Menu" type="Node2D"]
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ixrvb")
+animation = &"steady"
+script = ExtResource("4_o3djh")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(150, 0)
+zoom = Vector2(0.2, 0.2)

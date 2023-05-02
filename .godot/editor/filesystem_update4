@@ -5,5 +5,8 @@ res://scenes/Level_1.tscn
 res://scenes/PowerUp.tscn
 res://scenes/Level_2.tscn
 res://scenes/Player.tscn
-res://scripts/tile_map.gd
-res://scripts/player.gd
+res://scripts/level_1.gd
+res://AnimatedSprite2D.gd
+res://node_2d.tscn
+res://scenes/Choose_Level_Menu.tscn
+res://scripts/player_menu.gd
