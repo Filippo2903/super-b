@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7psewih0gany"]
+[gd_scene load_steps=7 format=3 uid="uid://cxeodsn7xlbf4"]
 
+[ext_resource type="Texture2D" uid="uid://bjmwbqj1qyovu" path="res://assets/level_menu.jpg" id="1_2r231"]
 [ext_resource type="Texture2D" uid="uid://bvrqfjyjh5ooc" path="res://assets/bizio/steady.png" id="1_7pn4w"]
 [ext_resource type="Texture2D" uid="uid://2dmjyyl0ylkn" path="res://assets/bizio/walk_right.png" id="2_6edgm"]
 [ext_resource type="Texture2D" uid="uid://c1lothq22ls2n" path="res://assets/bizio/walk_left.png" id="3_2v8oi"]
@@ -35,11 +36,20 @@ animations = [{
 
 [node name="Choose_Level_Menu" type="Node2D"]
 
-[node name="Player" type="AnimatedSprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(4, -14)
+scale = Vector2(14.3671, 14.3671)
+texture = ExtResource("1_2r231")
+
+[node name="Player_Menu" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2327, -128)
 sprite_frames = SubResource("SpriteFrames_ixrvb")
 animation = &"steady"
 script = ExtResource("4_o3djh")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player_Menu"]
+position = Vector2(3, -1)
 offset = Vector2(150, 0)
 zoom = Vector2(0.2, 0.2)
+limit_left = -3600
+limit_right = 3600
