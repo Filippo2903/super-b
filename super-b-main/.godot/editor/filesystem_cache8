@@ -1,0 +1,37 @@
+2a60927148abd1d33b818b535e306557
+::res://::1680590029
+Bullet.gd::GDScript::-1::1678722964::0::1::::<>CharacterBody2D<>::
+Bullet.tscn::PackedScene::2557002671025761381::1678722964::0::1::::<><>::res://Bullet.gd<>uid://ce0o4gv5ur1qb
+Camera2D.gd::GDScript::-1::1678722964::0::1::::<>Camera2D<>::
+default_env.tres::Environment::1521103229804774135::1678722964::0::1::::<><>::
+Golf_ricc.png::CompressedTexture2D::1027653036430848754::1678722964::1678722964::1::::<><>::
+Marta.gd::GDScript::-1::1678722964::0::1::::<>CharacterBody2D<>::
+Marta.tscn::PackedScene::6499221361942663614::1678722964::0::1::::<><>::uid://dd8m631cia6nw<>uid://b1xrbopsfx278<>uid://chm84rpc670vo<>res://Marta.gd<>uid://dyntnbeuf1wip
+Player.gd::GDScript::-1::1678722964::0::1::::<>CharacterBody2D<>::
+Player.tscn::PackedScene::6625837743942829355::1678722964::0::1::::<><>::uid://2dmjyyl0ylkn<>uid://c1lothq22ls2n<>uid://c5ro4tfyhgn33<>uid://bcxpe3fo0ca5u<>uid://bvrqfjyjh5ooc<>res://Camera2D.gd<>res://Player.gd
+Power_up.gd::GDScript::-1::1678722964::0::1::::<>Area2D<>::
+power_up.tscn::PackedScene::-1::1678722964::0::1::::<><>::res://Golf_ricc.png<>res://Power_up.gd
+super_b.tscn::PackedScene::7676676305717318793::1678722964::0::1::::<><>::uid://i20s4ajqyymi<>uid://c1nutyaovxq2n<>uid://cyujhxt3hjqta<>res://power_up.tscn<>uid://betg0jstolbed<>uid://xthofyhbt85q<>uid://cbaw0t5sydlnn<>uid://2q3lqk5mmv7y<>uid://donx842moklhc<>uid://dqyuaknrxqsim
+toppng.com-fire-ball-png-super-mario-bros-fireball-1156x808.png::CompressedTexture2D::5106108360683280337::1678722964::1678722964::1::::<><>::
+::res://audio/::1678722964
+miao.mp3::AudioStreamMP3::8871808106997189527::1678722964::1678722964::1::::<><>::
+::res://background/::1678722964
+Background_1.png::CompressedTexture2D::4844411674850545099::1678722964::1678722964::1::::<><>::
+Background_2.png::CompressedTexture2D::1929849399023487884::1678722964::1678722964::1::::<><>::
+Nature_background.png::CompressedTexture2D::8433663538109372046::1678722964::1678722964::1::::<><>::
+::res://main_pg_sprites/::1678722964
+ground_pound.png::CompressedTexture2D::2575198436427067312::1678722964::1678722964::1::::<><>::
+jump.png::CompressedTexture2D::6914503931035893480::1678722964::1678722964::1::::<><>::
+steady.png::CompressedTexture2D::3896461732969511446::1678722964::1678722964::1::::<><>::
+walk_left.png::CompressedTexture2D::6621343818896238419::1678722964::1678722964::1::::<><>::
+walk_right.png::CompressedTexture2D::1902037885717259197::1678722964::1678722964::1::::<><>::
+::res://marta/::1678722964
+steady.png::CompressedTexture2D::5290992170888284716::1678722964::1678722964::1::::<><>::
+walk_left.png::CompressedTexture2D::7438738522321938956::1678722964::1678722964::1::::<><>::
+walk_right.png::CompressedTexture2D::4259846040620676565::1678722964::1678722964::1::::<><>::
+::res://world_sprites/::1678722964
+Big_Dripleaf_(stem_texture)_JE1 (1).png::CompressedTexture2D::8170199760298237068::1678722964::1678722964::1::::<><>::
+Big_Dripleaf_(top_texture)_JE1 (1).png::CompressedTexture2D::8333043501360331956::1678722964::1678722964::1::::<><>::
+Bricks_Variation_1_29_JE1 (1).webp::CompressedTexture2D::2706808683775633703::1678722964::1678722964::1::::<><>::
+Dirt_29_JE2_BE2 (3).webp::CompressedTexture2D::1654016901078141336::1678722964::1678722964::1::::<><>::
+Grass_Block_(side_texture)_JE2_B.png::CompressedTexture2D::618800541181748576::1678722964::1678722964::1::::<><>::

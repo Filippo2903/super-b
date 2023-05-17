@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcovpwh6fov6t"]
+
+[ext_resource type="Script" path="res://Bullet.gd" id="1_q5iy1"]
+[ext_resource type="Texture2D" uid="uid://ce0o4gv5ur1qb" path="res://toppng.com-fire-ball-png-super-mario-bros-fireball-1156x808.png" id="2_4ohfr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lx6d2"]
+radius = 8.06226
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5goqc"]
+radius = 37.0
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_q5iy1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lx6d2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-8, 0)
+scale = Vector2(0.0825342, 0.0825342)
+texture = ExtResource("2_4ohfr")
+
+[node name="MobDetecter" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MobDetecter"]
+shape = SubResource("CircleShape2D_5goqc")
+
+[connection signal="body_entered" from="MobDetecter" to="." method="_on_mob_detected"]

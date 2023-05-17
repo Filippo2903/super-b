@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://psv04530tq0v"]
+
+[ext_resource type="Script" path="res://hp.gd" id="1_dht1t"]
+[ext_resource type="Texture2D" uid="uid://c1y4jp2raxceh" path="res://label_bg.png" id="1_vcqxl"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+offset_left = 33.0
+offset_top = 15.0
+offset_right = 107.0
+offset_bottom = 56.0
+texture = ExtResource("1_vcqxl")
+
+[node name="Label" type="Label" parent="NinePatchRect2"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 55.0
+offset_bottom = 33.0
+text = "HP: 0"
+script = ExtResource("1_dht1t")
