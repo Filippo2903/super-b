@@ -10,13 +10,16 @@ config_version=5
 
 [application]
 
-config/name="Prova 1"
+config/name="Super B"
+run/main_scene="res://scenes/Main_Menu.tscn"
 config/features=PackedStringArray("4.0")
+run/max_fps=144
 
 [display]
 
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+mouse_cursor/custom_image="res://oth708.png"
 
 [gui]
 
@@ -77,4 +80,8 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=3
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/decals/filter=0
+textures/light_projectors/filter=0
 environment/defaults/default_environment="res://default_env.tres"

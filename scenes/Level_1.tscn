@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://1a1xv4s0knon"]
+[gd_scene load_steps=14 format=3 uid="uid://c6407eyxt3f5o"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_yvj6d"]
 [ext_resource type="Texture2D" uid="uid://2q3lqk5mmv7y" path="res://assets/background/Background_2.png" id="2_1jd00"]
-[ext_resource type="Script" path="res://scenes/ParallaxBackground.gd" id="2_m28ms"]
+[ext_resource type="PackedScene" uid="uid://548vre60jo0" path="res://scenes/Pause_Controller.tscn" id="2_gkcu4"]
 [ext_resource type="Texture2D" uid="uid://cbaw0t5sydlnn" path="res://assets/background/Background_1.png" id="3_f0gly"]
+[ext_resource type="Script" path="res://scripts/ParallaxBackground.gd" id="3_tmljs"]
 [ext_resource type="PackedScene" uid="uid://jetiech2pdka" path="res://scenes/Player.tscn" id="4_2gtap"]
 [ext_resource type="Texture2D" uid="uid://ne0h53bwi3bo" path="res://assets/tileset.png" id="5_gcbne"]
 [ext_resource type="Script" path="res://scripts/tile_map.gd" id="6_rrwb2"]
-[ext_resource type="PackedScene" uid="uid://psv04530tq0v" path="res://scenes/UI.tscn" id="8_vgwyd"]
+[ext_resource type="PackedScene" uid="uid://cw42dcq023i1w" path="res://scenes/UI.tscn" id="8_vgwyd"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ge5u7"]
 tile_data = PackedInt32Array(0, 196608, 0, 1, 262144, 0)
@@ -78,8 +79,10 @@ pattern_1 = SubResource("TileMapPattern_efqac")
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_yvj6d")
 
+[node name="PauseController" parent="." instance=ExtResource("2_gkcu4")]
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-script = ExtResource("2_m28ms")
+script = ExtResource("3_tmljs")
 
 [node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.02, 1)

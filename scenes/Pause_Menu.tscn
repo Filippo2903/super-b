@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://hr11syj23wsi"]
+
+[ext_resource type="Script" path="res://scripts/Pause_Menu.gd" id="1_re8tu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b4oni"]
+font_size = 39
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.501961)
+
+[node name="Pause_Menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_re8tu")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -110.5
+offset_right = 218.0
+offset_bottom = 110.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_b4oni")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FullscreenCheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Full Screen"
+
+[node name="VSyncCheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Syncs Game Frame Rate with Displays Refresh Rate"
+text = "VSync"
+
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Menu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
+[node name="Exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/FullscreenCheckButton" to="." method="_on_fullscreen_check_button_toggled"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VSyncCheckButton" to="." method="_on_v_sync_check_button_toggled"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

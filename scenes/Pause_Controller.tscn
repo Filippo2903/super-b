@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://548vre60jo0"]
+
+[ext_resource type="Script" path="res://Node.gd" id="1_emosn"]
+
+[node name="Pause_Controller" type="Node"]
+process_mode = 3
+script = ExtResource("1_emosn")
