@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_yvj6d"]
 [ext_resource type="Texture2D" uid="uid://2q3lqk5mmv7y" path="res://assets/background/Background_2.png" id="2_1jd00"]
-[ext_resource type="PackedScene" uid="uid://548vre60jo0" path="res://scenes/Pause_Controller.tscn" id="2_gkcu4"]
+[ext_resource type="PackedScene" uid="uid://1u6lg0vfp8u7" path="res://scenes/Pause_Controller.tscn" id="2_gkcu4"]
 [ext_resource type="Texture2D" uid="uid://cbaw0t5sydlnn" path="res://assets/background/Background_1.png" id="3_f0gly"]
 [ext_resource type="Script" path="res://scripts/ParallaxBackground.gd" id="3_tmljs"]
 [ext_resource type="PackedScene" uid="uid://jetiech2pdka" path="res://scenes/Player.tscn" id="4_2gtap"]
-[ext_resource type="Texture2D" uid="uid://ne0h53bwi3bo" path="res://assets/tileset.png" id="5_gcbne"]
+[ext_resource type="Texture2D" uid="uid://i5d88bg44u7b" path="res://assets/tileset.png" id="5_gcbne"]
 [ext_resource type="Script" path="res://scripts/tile_map.gd" id="6_rrwb2"]
-[ext_resource type="PackedScene" uid="uid://cw42dcq023i1w" path="res://scenes/UI.tscn" id="8_vgwyd"]
+[ext_resource type="PackedScene" uid="uid://4clkf8r3lajx" path="res://scenes/UI.tscn" id="8_vgwyd"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ge5u7"]
 tile_data = PackedInt32Array(0, 196608, 0, 1, 262144, 0)

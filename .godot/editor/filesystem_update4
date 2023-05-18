@@ -6,4 +6,10 @@ res://scenes/Pause_Controller.tscn
 res://scenes/Pause_Menu.tscn
 res://scenes/UI.tscn
 res://scripts/Pause_Menu.gd
-res://Node.gd
+res://scenes/Level_2.tscn
+res://scripts/tile_map.gd
+res://scenes/Marta.tscn
+res://scripts/player.gd
+res://scripts/pause_controller.gd
+res://scenes/Doomba.tscn
+res://scripts/doomba.gd

@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw42dcq023i1w"]
+[gd_scene load_steps=4 format=3 uid="uid://4clkf8r3lajx"]
 
-[ext_resource type="Texture2D" uid="uid://c1y4jp2raxceh" path="res://label_bg.png" id="1_vcqxl"]
+[ext_resource type="Texture2D" uid="uid://c1y4jp2raxceh" path="res://assets/label_bg.png" id="1_lhpb4"]
 [ext_resource type="Script" path="res://scripts/hp.gd" id="2_3xort"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mev52"]
@@ -13,7 +13,7 @@ offset_left = 33.0
 offset_top = 15.0
 offset_right = 107.0
 offset_bottom = 56.0
-texture = ExtResource("1_vcqxl")
+texture = ExtResource("1_lhpb4")
 
 [node name="Label" type="Label" parent="NinePatchRect2"]
 texture_filter = 1

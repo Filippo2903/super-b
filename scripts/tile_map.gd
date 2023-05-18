@@ -5,6 +5,7 @@ const POWERUP_DATA_PATH = preload('res://scenes/PowerUp.tscn')
 func hit(player_pos: Vector2, player_direction: int):
 	var tile_pos = self.local_to_map(player_pos) - Vector2i(0, 1)
 	var tile_data = self.get_cell_tile_data(0, tile_pos)
+	
 	if tile_data == null:
 		hit(player_pos - Vector2(64, 0), player_direction)
 		return
@@ -22,3 +23,12 @@ func hit(player_pos: Vector2, player_direction: int):
 	powerup.position = powerup_pos
 	powerup.direction = player_direction
 	get_parent().add_child(powerup)
+
+func jump(player_pos: Vector2):
+	var tile_pos = self.local_to_map(player_pos) - Vector2i(0, -1)
+	var tile_data = self.get_cell_tile_data(0, tile_pos)
+
+	if tile_data != null and tile_data.get_custom_data("jump_boost"):
+		get_node("../Player").rebound_speed = 2000
+		get_node("../Player").rebound = true
+		return

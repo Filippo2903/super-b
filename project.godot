@@ -19,7 +19,7 @@ run/max_fps=144
 
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
-mouse_cursor/custom_image="res://oth708.png"
+mouse_cursor/custom_image="res://assets/oth708.png"
 
 [gui]
 

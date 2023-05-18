@@ -6,18 +6,13 @@ extends CanvasLayer
 
 var config = ConfigFile.new()
 
-
-
 func save_options():
 	config.set_value("Options", "fullscreen", fullscreen_check_button.button_pressed)
-
 	config.set_value("Options", "vsync", vsync_check_button.button_pressed)
-	
 	config.save("res://options.cfg")
 
 func load_options():
 	var err = config.load("res://options.cfg")
-	
 	var fullscreen = config.get_value("Options", "fullscreen", false)
 	var vsync = config.get_value("Options", "vsync", false)
 
@@ -25,11 +20,10 @@ func load_options():
 	
 	vsync_check_button.set_pressed_no_signal(vsync)
 	vsync_check_button.emit_signal("toggled", vsync)
-	
+
 func _ready():
 	load_options()
-	
-	
+
 func _on_resume_pressed():
 	save_options()
 	get_node(Pause_Controller).resume()
@@ -49,11 +43,9 @@ func _on_v_sync_check_button_toggled(button_pressed):
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 
-
 func _on_menu_pressed():
 	get_node(Pause_Controller).resume()
 	get_tree().change_scene_to_file("res://scenes/Choose_Level_Menu.tscn")
-
 
 func _on_exit_pressed():
 	get_node(Pause_Controller).resume()

@@ -4,10 +4,15 @@ const GRAVITY = 3900
 
 const bulletPath = preload('res://scenes/Bullet.tscn')
 
+const Speed = {
+	WALK = 650,
+	JUMP = 1500,
+	GROUND_POUND = 1300,
+}
+
 const WALK_SPEED = 650
 const JUMP_SPEED = 1500
 const GROUND_POUND_SPEED = 1300
-const REBOUND_SPEED = 800
 
 const Direction = {
 	STEADY = 0,
@@ -22,6 +27,11 @@ const Status = {
 	DEAD = 0
 }
 
+const Rebound = {
+	MOB = 0,
+	MUSHROOM = 1
+}
+
 @onready var animation = $AnimatedSprite2D
 @onready var hitbox = $CollisionShape2D
 
@@ -34,6 +44,7 @@ var ground_pound = false
 var ground_pound_pause = 0
 var rebound = false
 var rebound_pause = 0
+var rebound_speed
 var shot = false
 var shot_pause = 0
 
@@ -148,11 +159,12 @@ func move(delta):
 	
 	velocity.x = lerpf(velocity.x, WALK_SPEED * direction, 0.04)
 	
+	
 	if rebound:
 		velocity.x = 0
 		rebound_pause += delta
 		if rebound_pause < 2 * delta:
-			velocity.y = -REBOUND_SPEED
+			velocity.y = -rebound_speed
 		else:
 			rebound_pause = 0
 			rebound = false
@@ -212,6 +224,10 @@ func respawn():
 	match_status()
 
 func tilemap_interactions():
+	if is_on_floor():
+		var collider = get_last_slide_collision().get_collider()
+		if collider is TileMap and collider.has_method("jump"):
+			collider.jump(position)
 	if is_on_ceiling():
 		var collider = get_last_slide_collision().get_collider()
 		if collider is TileMap and collider.has_method("hit"):

@@ -26,6 +26,7 @@ func _ready():
 
 func _on_SideCollision_body_entered(body):
 	if status != Status.STEADY:
+		body.rebound_speed = 800
 		body.hit()
 	else:
 		hit()
