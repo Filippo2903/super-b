@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3ktmirfe0e4n"]
+
+[ext_resource type="Script" path="res://scenes/FirePowerUp.gd" id="1_wc8uk"]
+[ext_resource type="Texture2D" uid="uid://bhqlascp1by1t" path="res://assets/FirePowerUp.png" id="2_feiva"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7wx3"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kl83d"]
+size = Vector2(64, 64)
+
+[node name="FirePowerUp" type="CharacterBody2D"]
+collision_layer = 16
+script = ExtResource("1_wc8uk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h7wx3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_feiva")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visibility_layer = 16
+shape = SubResource("RectangleShape2D_kl83d")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_hit"]

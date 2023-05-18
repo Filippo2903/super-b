@@ -2,17 +2,11 @@ extends CharacterBody2D
 
 const GRAVITY = 3900
 
-const bulletPath = preload('res://scenes/Bullet.tscn')
-
 const Speed = {
 	WALK = 650,
 	JUMP = 1500,
 	GROUND_POUND = 1300,
 }
-
-const WALK_SPEED = 650
-const JUMP_SPEED = 1500
-const GROUND_POUND_SPEED = 1300
 
 const Direction = {
 	STEADY = 0,
@@ -27,10 +21,7 @@ const Status = {
 	DEAD = 0
 }
 
-const Rebound = {
-	MOB = 0,
-	MUSHROOM = 1
-}
+const bulletPath = preload('res://scenes/Bullet.tscn')
 
 @onready var animation = $AnimatedSprite2D
 @onready var hitbox = $CollisionShape2D
@@ -117,7 +108,7 @@ func move(delta):
 			return
 		
 		animation.rotation = 0
-		velocity = Vector2(0, GROUND_POUND_SPEED)
+		velocity = Vector2(0, Speed.GROUND_POUND)
 		move_and_slide()
 		
 		if is_on_floor():
@@ -149,19 +140,18 @@ func move(delta):
 		direction_watching = direction
 	
 	if Input.is_action_just_pressed("ui_select") and is_on_wall() and not is_on_floor():
-		velocity.y = -JUMP_SPEED
-		velocity.x = -WALK_SPEED * direction
+		velocity.y = -Speed.JUMP
+		velocity.x = -Speed.WALK * direction
 	
 	elif Input.is_action_just_pressed("ui_select") and is_on_floor():
-		velocity.y = -JUMP_SPEED
+		velocity.y = -Speed.JUMP
 	elif Input.is_action_just_released("ui_select") and velocity.y < 0:
 		velocity.y = lerpf(velocity.y, 0, 0.4)
 	
-	velocity.x = lerpf(velocity.x, WALK_SPEED * direction, 0.04)
+	velocity.x = lerpf(velocity.x, Speed.WALK * direction, 0.04)
 	
 	
 	if rebound:
-		velocity.x = 0
 		rebound_pause += delta
 		if rebound_pause < 2 * delta:
 			velocity.y = -rebound_speed
@@ -198,9 +188,14 @@ func status_down():
 		status -= 1
 	match_status()
 
-func status_up():
+func status_normal():
+	if status < Status.NORMAL:
+		status = Status.NORMAL
+	match_status()
+
+func status_power_up():
 	if status < Status.POWER_UP:
-		status += 1
+		status = Status.POWER_UP
 	match_status()
 
 func match_status():
@@ -224,14 +219,14 @@ func respawn():
 	match_status()
 
 func tilemap_interactions():
-	if is_on_floor():
+	if is_on_floor() and get_last_slide_collision() != null:
 		var collider = get_last_slide_collision().get_collider()
 		if collider is TileMap and collider.has_method("jump"):
 			collider.jump(position)
-	if is_on_ceiling():
+	if is_on_ceiling() and get_last_slide_collision() != null:
 		var collider = get_last_slide_collision().get_collider()
 		if collider is TileMap and collider.has_method("hit"):
-			collider.hit(position, direction_watching)
+			collider.hit(position, direction_watching, status)
 
 func _ready():
 	# DEBUG

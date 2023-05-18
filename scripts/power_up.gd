@@ -20,5 +20,5 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_hit(body):
-	body.status_up()
+	body.status_normal()
 	queue_free()

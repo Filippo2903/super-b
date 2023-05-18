@@ -17,10 +17,10 @@ func _ready():
 	status = Status.WALKING
 
 func _on_SideCollision_body_entered(body):
-	body.rebound_speed = 800
 	body.hit()
 
 func _on_TopCollision_body_entered(body):
+	body.rebound_speed = 800
 	body.rebound = true
 	hit()
 

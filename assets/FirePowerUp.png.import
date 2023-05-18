@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://87ctm1s1oept"
-path="res://.godot/imported/tileset.png-c50288acd069fa293d7940a084811264.ctex"
+uid="uid://bhqlascp1by1t"
+path="res://.godot/imported/FirePowerUp.png-575b88076a4cf61364a5427dbf32d27a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-c50288acd069fa293d7940a084811264.ctex"]
+source_file="res://assets/FirePowerUp.png"
+dest_files=["res://.godot/imported/FirePowerUp.png-575b88076a4cf61364a5427dbf32d27a.ctex"]
 
 [params]
 
