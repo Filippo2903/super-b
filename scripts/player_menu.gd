@@ -14,7 +14,7 @@ var level_selected = Level.START
 var goal = position.x
 
 var distance = [1000, 1020, 1540, 1860]
-var livelli = ["", "res://scenes/Level_1.tscn", "res://scenes/Level_2.tscn", ""]
+var livelli = ["", "res://scenes/Level1.tscn", "res://scenes/Level2.tscn", "res://scenes/BossFight.tscn"]
 
 func animate():
 	flip_h = position.x > goal

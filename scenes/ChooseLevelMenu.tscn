@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxeodsn7xlbf4"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Texture2D" uid="uid://bjmwbqj1qyovu" path="res://assets/level_menu.jpg" id="1_2r231"]
 [ext_resource type="Texture2D" uid="uid://bvrqfjyjh5ooc" path="res://assets/bizio/steady.png" id="1_7pn4w"]
-[ext_resource type="PackedScene" uid="uid://1u6lg0vfp8u7" path="res://scenes/Pause_Controller.tscn" id="1_85xh8"]
+[ext_resource type="PackedScene" uid="uid://1u6lg0vfp8u7" path="res://scenes/PauseController.tscn" id="1_85xh8"]
 [ext_resource type="Texture2D" uid="uid://2dmjyyl0ylkn" path="res://assets/bizio/walk_right.png" id="2_6edgm"]
 [ext_resource type="Texture2D" uid="uid://c1lothq22ls2n" path="res://assets/bizio/walk_left.png" id="3_2v8oi"]
 [ext_resource type="Script" path="res://scripts/player_menu.gd" id="4_o3djh"]

@@ -19,6 +19,8 @@ var status = Status.WALKING
 
 var speed = Speed.WALK
 
+var flipping = false
+
 func _ready():
 	set_up_direction(Vector2.UP)
 	status = Status.WALKING
@@ -26,12 +28,12 @@ func _ready():
 
 func _on_SideCollision_body_entered(body):
 	if status != Status.STEADY:
-		body.rebound_speed = 800
 		body.hit()
 	else:
 		hit()
 
 func _on_TopCollision_body_entered(body):
+	body.rebound_speed = 800
 	body.rebound = true
 	hit()
 
@@ -66,8 +68,12 @@ func _process(_delta):
 	animate()
 
 func _physics_process(delta):
+	if is_on_wall():
+		flipping = true
+		flip()
 	move(delta, speed)
 
-func _on_edge(area):
-	if status == Status.WALKING:
+func _on_edge(body):
+	if status == Status.WALKING and not flipping:
 		flip()
+	flipping = false

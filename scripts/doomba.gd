@@ -12,9 +12,8 @@ const Status = {
 var status = Status.WALKING
 
 func _ready():
-	animation.play("walk")
 	set_up_direction(Vector2.UP)
-	status = Status.WALKING
+	animation.play("walk")
 
 func _on_SideCollision_body_entered(body):
 	body.hit()
@@ -30,5 +29,10 @@ func hit():
 func free():
 	queue_free()
 
+func flip():
+	direction *= -1
+
 func _physics_process(delta):
+	if is_on_wall():
+		flip()
 	move(delta, WALK_SPEED)

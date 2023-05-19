@@ -49,3 +49,7 @@ func jump(player_pos: Vector2):
 		get_node("../Player").rebound_speed = 2000
 		get_node("../Player").rebound = true
 		return
+
+
+func _on_edge(body):
+	pass # Replace with function body.

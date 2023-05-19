@@ -232,7 +232,6 @@ func _ready():
 	# DEBUG
 	status = Status.NORMAL
 	
-	position = Vector2(0, -96)
 	set_up_direction(Vector2.UP)
 	match_status()
 

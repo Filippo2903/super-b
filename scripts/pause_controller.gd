@@ -1,6 +1,6 @@
 extends Node
 
-const menuPath = preload('res://scenes/Pause_Menu.tscn')
+const menuPath = preload('res://scenes/PauseMenu.tscn')
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
