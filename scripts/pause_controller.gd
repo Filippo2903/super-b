@@ -15,6 +15,6 @@ func pause():
 	get_tree().set_deferred("paused", true)
 
 func resume():
-	get_node("../Pause_Menu").save_options()
-	get_node("../Pause_Menu").queue_free()
+	get_node("../PauseMenu").save_options()
+	get_node("../PauseMenu").queue_free()
 	get_tree().set_deferred("paused", false)

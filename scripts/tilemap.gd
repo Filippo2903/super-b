@@ -43,8 +43,6 @@ func hit(player_pos: Vector2, player_direction: int, status: int):
 		powerup.position = powerup_pos
 		get_parent().add_child(powerup)
 		return
-	
-	var hp = 1 # hp ++
 
 func jump(player_pos: Vector2):
 	var tile_pos = self.local_to_map(player_pos) - Vector2i(0, -1)

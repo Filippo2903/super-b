@@ -4,6 +4,7 @@ const GRAVITY = 3900
 
 const Speed = {
 	WALK = 650,
+	WALL_JUMP = 1000,
 	JUMP = 1500,
 	GROUND_POUND = 1300,
 }
@@ -44,7 +45,7 @@ var just_hitted = false
 func hit():
 	just_hitted=true
 	status_down()
-	
+
 func animate():
 	if velocity.x != 0:
 		animation.flip_h = velocity.x < 0
@@ -143,9 +144,9 @@ func move(delta):
 		direction = Direction.LEFT
 		direction_watching = direction
 	
-	if Input.is_action_just_pressed("ui_select") and is_on_wall() and not is_on_floor():
-		velocity.y = -Speed.JUMP
-		velocity.x = -Speed.WALK * direction
+	if Input.is_action_just_pressed("ui_select") and is_on_wall_only():
+		velocity.y = -Speed.WALL_JUMP
+		velocity.x = -Speed.WALK * 2.5 * direction
 	
 	elif Input.is_action_just_pressed("ui_select") and is_on_floor():
 		velocity.y = -Speed.JUMP

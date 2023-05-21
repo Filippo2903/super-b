@@ -7,7 +7,7 @@ font_size = 39
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.501961)
 
-[node name="Pause_Menu" type="CanvasLayer"]
+[node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_eshl2")
 

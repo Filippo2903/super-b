@@ -1,5 +1,5 @@
 extends StaticBody2D
 
 func _on_hit(body):
-	body.status_power_up()
+	var coin = 1 # coin++
 	queue_free()

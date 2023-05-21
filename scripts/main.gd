@@ -2,8 +2,6 @@ extends Node2D
 
 func _ready():
 	var config = ConfigFile.new()
-	var fullscreen_check_button: CheckButton = $%FullscreenCheckButton
-	var vsync_check_button: CheckButton = $%VSyncCheckButton
 	
 	var err = config.load("res://options.cfg")
 	var fullscreen = config.get_value("Options", "fullscreen", false)
@@ -17,7 +15,7 @@ func _ready():
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 	if vsync:
-			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 

@@ -19,6 +19,7 @@ script = ExtResource("2_mgouv")
 position = Vector2(501, -36)
 
 [node name="Boss" parent="." instance=ExtResource("4_x5xbt")]
+position = Vector2(1498, -28)
 
 [node name="HP" parent="." instance=ExtResource("4_5y83f")]
 
