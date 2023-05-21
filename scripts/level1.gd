@@ -6,7 +6,7 @@ const DOOMBA_DATA_PATH = preload('res://scenes/Doomba.tscn')
 const DEAD = 0
 
 var mob = [
-	{ position = Vector2(1750, -32), type = MARTA_DATA_PATH, is_spawned = false, is_dead = false },
+	{ position = Vector2(1750, -32), type = DOOMBA_DATA_PATH, is_spawned = false, is_dead = false },
 	{ position = Vector2(2500, -32), type = DOOMBA_DATA_PATH, is_spawned = false, is_dead = false },
 	{ position = Vector2(3000, -32), type = DOOMBA_DATA_PATH, is_spawned = false, is_dead = false },
 	{ position = Vector2(5000, -62), type = MARTA_DATA_PATH, is_spawned = false, is_dead = false },

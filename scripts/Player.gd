@@ -33,7 +33,7 @@ var direction_watching = Direction.RIGHT
 var crouch = false
 var ground_pound = false
 var ground_pound_pause = 0
-var rebound = false
+var rebounding = false
 var rebound_pause = 0
 var rebound_speed
 var shot = false
@@ -86,6 +86,10 @@ func resize_hitbox():
 	elif is_on_floor():
 		position.y -= 32
 		scale.y = 2
+
+func rebound(speed):
+	rebound_speed = speed
+	rebounding = true
 
 func move(delta):
 	direction = Direction.STEADY
@@ -148,16 +152,15 @@ func move(delta):
 	elif Input.is_action_just_released("ui_select") and velocity.y < 0:
 		velocity.y = lerpf(velocity.y, 0, 0.4)
 	
-	velocity.x = lerpf(velocity.x, Speed.WALK * direction, 0.04)
+	velocity.x = lerpf(velocity.x, Speed.WALK * direction, 0.08)
 	
-	
-	if rebound:
+	if rebounding:
 		rebound_pause += delta
 		if rebound_pause < 2 * delta:
 			velocity.y = -rebound_speed
 		else:
 			rebound_pause = 0
-			rebound = false
+			rebounding = false
 	
 	move_and_slide()
 

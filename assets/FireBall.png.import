@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ce0o4gv5ur1qb"
-path="res://.godot/imported/toppng.com-fire-ball-png-super-mario-bros-fireball-1156x808.png-48e8b73d760198ddb3bf7d118ecd4de1.ctex"
+path="res://.godot/imported/FireBall.png-c33adfae00ea9b07b7b89343a682033d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://toppng.com-fire-ball-png-super-mario-bros-fireball-1156x808.png"
-dest_files=["res://.godot/imported/toppng.com-fire-ball-png-super-mario-bros-fireball-1156x808.png-48e8b73d760198ddb3bf7d118ecd4de1.ctex"]
+source_file="res://assets/FireBall.png"
+dest_files=["res://.godot/imported/FireBall.png-c33adfae00ea9b07b7b89343a682033d.ctex"]
 
 [params]
 

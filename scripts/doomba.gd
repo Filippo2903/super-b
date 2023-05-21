@@ -19,8 +19,8 @@ func _on_SideCollision_body_entered(body):
 	body.hit()
 
 func _on_TopCollision_body_entered(body):
-	body.rebound_speed = 800
-	body.rebound = true
+	if body.has_method("rebound"):
+		body.rebound(800)
 	hit()
 
 func hit():
