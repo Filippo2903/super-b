@@ -1,4 +1,8 @@
+CollisionShape2D
+Area2D
 CharacterBody2D
+Timer
+Sprite2D
 StaticBody2D
 TileMap
 VBoxContainer
@@ -13,13 +17,10 @@ HSeparator
 Label
 Node
 NinePatchRect
-Sprite2D
 Camera2D
 AnimatedSprite2D
 PathFollow2D
 Path2D
-CollisionShape2D
-Area2D
 Node2D
 RigidBody2D
 CanvasGroup

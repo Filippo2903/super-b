@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const GRAVITY = 3900
-const SPEED = 400
+const SPEED = 800
 
 const Attack = {
 	SPELL = 1,
@@ -14,6 +14,8 @@ const Status = {
 	STAGE3 = 2
 }
 
+const MagicSpellPath = preload('res://scenes/MagicSpell.tscn')
+
 @onready var animation = $AnimatedSprite2D
 
 var status = Status.STAGE1
@@ -21,6 +23,8 @@ var speed = SPEED
 var direction = -1
 var attack
 
+var not_spell = true
+var spell_pause = 0
 var flip_count = 0
 
 func _ready():
@@ -54,17 +58,29 @@ func move(delta, speed):
 	move_and_slide()
 
 func spell():
-	attack = Attack.ROLLING
+	var positon_offset = Vector2(32 * direction, 0)
+	var magic_spell = MagicSpellPath.instantiate()
+	get_parent().add_child(magic_spell)
+	magic_spell.position = position + positon_offset
 
 func _process(_delta):
 	animate()
 
 func _physics_process(delta):
-	#if flip_count > 3:
-	#	attack = Attack.SPELL
-	#	spell()
-	#	flip_count = 0
-	#if attack == Attack.ROLLING:
+	if flip_count > 2:
+		attack = Attack.SPELL
+		flip_count = 0
+	if attack == Attack.SPELL:
+		if spell_pause < 200 * delta:
+			if spell_pause > 100 * delta and not_spell:
+				spell()
+				not_spell = false
+			spell_pause += delta
+			return
+		not_spell = true
+		spell_pause = 0
+		attack = Attack.ROLLING
+	if attack == Attack.ROLLING:
 		move(delta, speed)
 
 func _on_edge(body):

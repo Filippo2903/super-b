@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c81yun0bbjh2b"]
+[gd_scene load_steps=10 format=3 uid="uid://c81yun0bbjh2b"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_gqp6n"]
 [ext_resource type="Texture2D" uid="uid://chm84rpc670vo" path="res://assets/marta/steady.png" id="2_6ajn4"]
@@ -47,9 +47,6 @@ b = Vector2(30, 60)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rmsf"]
 size = Vector2(74, 0.730461)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp7qu"]
-size = Vector2(6.83021, 5.00001)
-
 [node name="Boss" type="CharacterBody2D"]
 position = Vector2(1500, -28)
 collision_layer = 4
@@ -89,23 +86,5 @@ position = Vector2(0, -23.5294)
 scale = Vector2(1.01712, 3.2786)
 shape = SubResource("RectangleShape2D_2rmsf")
 
-[node name="EdgeSpotterLeft" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeSpotterLeft"]
-position = Vector2(-26, 32)
-scale = Vector2(1.36596, 0.85357)
-shape = SubResource("RectangleShape2D_fp7qu")
-
-[node name="EdgeSpotterRight" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeSpotterRight"]
-position = Vector2(27, 31)
-scale = Vector2(1.36596, 0.85357)
-shape = SubResource("RectangleShape2D_fp7qu")
-
 [connection signal="body_entered" from="SideCollision" to="." method="_on_side_collision"]
 [connection signal="body_entered" from="TopCollision" to="." method="_on_top_collision"]
-[connection signal="body_exited" from="EdgeSpotterLeft" to="." method="_on_edge"]
-[connection signal="body_exited" from="EdgeSpotterRight" to="." method="_on_edge"]
