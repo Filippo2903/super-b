@@ -23,6 +23,7 @@ var speed = SPEED
 var direction = -1
 var attack
 
+var resizing = false
 var not_spell = true
 var spell_pause = 0
 var flip_count = 0
@@ -64,6 +65,7 @@ func spell():
 func set_spell():
 	flip_count = 0
 	if attack == Attack.ROLLING:
+		resizing = true
 		velocity.x = 0
 		position.y -= 70
 		get_node("CollisionShape2D").scale = Vector2(1, 1)
@@ -95,10 +97,12 @@ func _on_edge(_body):
 	flip()
 
 func _on_side_collision(body):
-	body.hit()
+	if body.has_method("hit") and not resizing:
+		body.hit()
+	resizing = false
 
 func _on_top_collision(body):
 	if body.has_method("rebound"):
-		body.rebound(900)
+		body.rebound(1300)
 	set_spell()
 	hit()
