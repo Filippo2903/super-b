@@ -9,6 +9,7 @@ func _ready():
 
 func _physics_process(_delta):
 	var direction = player.position - position
+	rotation_degrees = rad_to_deg(direction.angle())
 	velocity = direction.normalized() * SPEED
 	move_and_slide()
 

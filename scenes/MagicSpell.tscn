@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://cx0h1xehtq7p4"]
 
 [ext_resource type="Script" path="res://scripts/magic_spell.gd" id="1_qb8mm"]
-[ext_resource type="Texture2D" uid="uid://dnrtcy231n73" path="res://assets/oth708.png" id="2_uoohv"]
+[ext_resource type="Texture2D" uid="uid://q1www7lo4vx0" path="res://assets/boss/MagicSpell.png" id="2_77836"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g0cfh"]
-radius = 26.0
+radius = 14.1421
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_okp2h"]
-radius = 25.1794
+radius = 14.8661
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 0
@@ -17,9 +17,7 @@ script = ExtResource("1_qb8mm")
 shape = SubResource("CircleShape2D_g0cfh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.5, -1.5)
-scale = Vector2(2.86667, 1.95455)
-texture = ExtResource("2_uoohv")
+texture = ExtResource("2_77836")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

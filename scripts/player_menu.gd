@@ -26,7 +26,7 @@ func animate():
 		animation = "steady"
 		stop()
 
-func _process(delta):
+func move(delta):
 	if Input.is_action_just_pressed("ui_right") and current_level == level_selected and level_selected < Level.BOSS:
 		level_selected += 1
 		goal = position.x + distance[level_selected]
@@ -39,5 +39,7 @@ func _process(delta):
 		get_tree().change_scene_to_file(livelli[level_selected])
 	
 	position.x = move_toward(position.x, goal, delta * SPEED)
-	
+
+func _process(delta):
+	move(delta)
 	animate()
