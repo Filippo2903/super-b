@@ -1,15 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c81yun0bbjh2b"]
+[gd_scene load_steps=9 format=3 uid="uid://c81yun0bbjh2b"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_gqp6n"]
-[ext_resource type="Texture2D" uid="uid://chm84rpc670vo" path="res://assets/marta/steady.png" id="2_6ajn4"]
-[ext_resource type="Texture2D" uid="uid://b1xrbopsfx278" path="res://assets/marta/walk_right.png" id="3_27myg"]
-[ext_resource type="Texture2D" uid="uid://dd8m631cia6nw" path="res://assets/marta/walk_left.png" id="4_xko2d"]
+[ext_resource type="Texture2D" uid="uid://bf282akcb8m4w" path="res://assets/boss/MacRoll.png" id="2_eaate"]
+[ext_resource type="Texture2D" uid="uid://chksahopssl2e" path="res://assets/boss/Mac.png" id="2_myecx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aumce"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_6ajn4")
+"texture": ExtResource("2_eaate")
 }],
 "loop": true,
 "name": &"roll",
@@ -17,16 +16,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_27myg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_6ajn4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_xko2d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_6ajn4")
+"texture": ExtResource("2_myecx")
 }],
 "loop": true,
 "name": &"spell",
@@ -34,56 +24,55 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r01qo"]
-size = Vector2(75.9684, 50.8416)
+size = Vector2(70.4453, 189.783)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_wkq53"]
-a = Vector2(-30, -52)
-b = Vector2(-30, 52)
+a = Vector2(-29.0253, -202.114)
+b = Vector2(-29.0253, 210.198)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ry26r"]
-a = Vector2(30, -52)
-b = Vector2(30, 60)
+a = Vector2(28.9474, -221.909)
+b = Vector2(28.9474, 224.085)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rmsf"]
-size = Vector2(74, 0.730461)
+size = Vector2(74.7207, 1.12135)
 
 [node name="Boss" type="CharacterBody2D"]
-position = Vector2(1500, -28)
 collision_layer = 4
 script = ExtResource("1_gqp6n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(4.23516e-22, -8)
-scale = Vector2(0.2, 0.2)
+position = Vector2(4.23516e-22, 5.72205e-06)
+scale = Vector2(0.387255, 0.356209)
 sprite_frames = SubResource("SpriteFrames_aumce")
-animation = &"roll"
+animation = &"spell"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.07885, 1.08545)
 shape = SubResource("RectangleShape2D_r01qo")
 
-[node name="SideCollision" type="Area2D" parent="."]
-scale = Vector2(1, 0.5)
+[node name="SideCollision" type="Area2D" parent="CollisionShape2D"]
+scale = Vector2(0.926913, 0.460638)
 collision_layer = 128
 collision_mask = 2
 
-[node name="LeftCollision" type="CollisionShape2D" parent="SideCollision"]
+[node name="LeftCollision" type="CollisionShape2D" parent="CollisionShape2D/SideCollision"]
 scale = Vector2(1.51592, 0.989542)
 shape = SubResource("SegmentShape2D_wkq53")
 
-[node name="RightCollision" type="CollisionShape2D" parent="SideCollision"]
+[node name="RightCollision" type="CollisionShape2D" parent="CollisionShape2D/SideCollision"]
 scale = Vector2(1.52, 0.919296)
 shape = SubResource("SegmentShape2D_ry26r")
 
-[node name="TopCollision" type="Area2D" parent="."]
-scale = Vector2(1, 1.36)
+[node name="TopCollision" type="Area2D" parent="CollisionShape2D"]
+scale = Vector2(0.926913, 1.25294)
 collision_layer = 128
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopCollision"]
-position = Vector2(0, -23.5294)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/TopCollision"]
+position = Vector2(0, -80.1471)
 scale = Vector2(1.01712, 3.2786)
 shape = SubResource("RectangleShape2D_2rmsf")
 
-[connection signal="body_entered" from="SideCollision" to="." method="_on_side_collision"]
-[connection signal="body_entered" from="TopCollision" to="." method="_on_top_collision"]
+[connection signal="body_entered" from="CollisionShape2D/SideCollision" to="." method="_on_side_collision"]
+[connection signal="body_entered" from="CollisionShape2D/TopCollision" to="." method="_on_top_collision"]

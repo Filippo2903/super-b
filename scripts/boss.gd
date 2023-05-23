@@ -29,7 +29,7 @@ var flip_count = 0
 
 func _ready():
 	set_up_direction(Vector2.UP)
-	attack = Attack.ROLLING
+	attack = Attack.SPELL
 
 func hit():
 	if status == Status.STAGE3:
@@ -49,13 +49,11 @@ func animate():
 	else:
 		animation.play("spell")
 
-func move(delta):
+func roll(_delta):
 	if is_on_wall():
 		flip()
 	
 	velocity.x = speed * direction
-	velocity.y += GRAVITY * delta
-	move_and_slide()
 
 func spell():
 	var positon_offset = Vector2(32 * direction, 0)
@@ -63,16 +61,25 @@ func spell():
 	get_parent().add_child(magic_spell)
 	magic_spell.position = position + positon_offset
 
-func _process(_delta):
+func set_spell():
+	flip_count = 0
+	if attack == Attack.ROLLING:
+		velocity.x = 0
+		position.y -= 70
+		get_node("CollisionShape2D").scale = Vector2(1, 1)
+	attack = Attack.SPELL
+
+func _process(delta):
+	velocity.y += GRAVITY * delta
+	move_and_slide()
 	animate()
 
 func _physics_process(delta):
 	if flip_count > 2:
-		attack = Attack.SPELL
-		flip_count = 0
+		set_spell()
 	if attack == Attack.SPELL:
-		if spell_pause < 200 * delta:
-			if spell_pause > 100 * delta and not_spell:
+		if spell_pause < 150 * delta:
+			if spell_pause > 50 * delta and not_spell:
 				spell()
 				not_spell = false
 			spell_pause += delta
@@ -81,7 +88,8 @@ func _physics_process(delta):
 		spell_pause = 0
 		attack = Attack.ROLLING
 	if attack == Attack.ROLLING:
-		move(delta)
+		get_node("CollisionShape2D").scale = Vector2(1, 0.25)
+		roll(delta)
 
 func _on_edge(_body):
 	flip()
@@ -92,4 +100,5 @@ func _on_side_collision(body):
 func _on_top_collision(body):
 	if body.has_method("rebound"):
 		body.rebound(900)
+	set_spell()
 	hit()
