@@ -40,11 +40,44 @@ var rebound_speed
 var shot = false
 var shot_pause = 0
 
-var just_hitted = false
+var hitted = false
 
 func hit():
-	just_hitted=true
+	invulnerability()
+	blink()
+	hitted = true
 	status_down()
+
+func init_invulnerability_timer():
+	var invulnerability_timer = get_node("InvulnerabilityTimer")
+	var invulnerability_callable = Callable(self, "remove_invulnerability")
+	invulnerability_timer.connect("timeout", invulnerability_callable)
+	invulnerability_timer.set_wait_time(2)
+
+func init_blink_timer():
+	var blink_timer = get_node("BlinkTimer")
+	var visibility_callable = Callable(self, "visibility")
+	blink_timer.connect("timeout", visibility_callable)
+	blink_timer.set_wait_time(0.15)
+
+func invulnerability():
+	set_collision_layer_value(2, false)
+	set_collision_mask_value(3, false)
+	get_node("InvulnerabilityTimer").start()
+
+func blink():
+	animation.visible = false
+	get_node("BlinkTimer").start()
+
+func visibility():
+	animation.visible = true if animation.visible == false else false
+
+func remove_invulnerability():
+	get_node("BlinkTimer").stop()
+	animation.visible = true
+	
+	set_collision_layer_value(2, true)
+	set_collision_mask_value(3, true)
 
 func animate():
 	if velocity.x != 0:
@@ -130,12 +163,12 @@ func move(delta):
 				resize_hitbox()
 		return
 	
-	if crouch and not just_hitted:
+	if crouch and not hitted:
 		velocity.x = lerpf(velocity.x, 0, 0.07)
 		move_and_slide()
 		return
 	
-	just_hitted = false
+	hitted = false
 	
 	if Input.is_action_pressed("ui_right"):
 		direction = Direction.RIGHT
@@ -238,6 +271,9 @@ func _ready():
 	
 	set_up_direction(Vector2.UP)
 	match_status()
+	
+	init_blink_timer()
+	init_invulnerability_timer()
 
 func _physics_process(delta):
 	velocity.y += GRAVITY * delta

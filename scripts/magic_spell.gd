@@ -7,7 +7,7 @@ var player
 func _ready():
 	player = get_parent().get_node("Player")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = player.position - position
 	velocity = direction.normalized() * SPEED
 	move_and_slide()

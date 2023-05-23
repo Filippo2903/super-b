@@ -7,7 +7,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if(player_node):
 		text = "HP: " + str(player_node.status)
 	#print(str(get_node("../../../Player").status))

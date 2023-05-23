@@ -12,7 +12,6 @@ func save_options():
 	config.save("res://options.cfg")
 
 func load_options():
-	var err = config.load("res://options.cfg")
 	var fullscreen = config.get_value("Options", "fullscreen", false)
 	var vsync = config.get_value("Options", "vsync", false)
 

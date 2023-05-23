@@ -1,8 +1,9 @@
+Timer
+Sprite2D
+AnimationPlayer
 CollisionShape2D
 Area2D
 CharacterBody2D
-Timer
-Sprite2D
 StaticBody2D
 TileMap
 VBoxContainer

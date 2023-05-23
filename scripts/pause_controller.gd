@@ -2,7 +2,7 @@ extends Node
 
 const menuPath = preload('res://scenes/PauseMenu.tscn')
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if !get_tree().paused:
 			pause()

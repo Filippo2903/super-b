@@ -49,7 +49,7 @@ func animate():
 	else:
 		animation.play("spell")
 
-func move(delta, speed):
+func move(delta):
 	if is_on_wall():
 		flip()
 	
@@ -81,9 +81,9 @@ func _physics_process(delta):
 		spell_pause = 0
 		attack = Attack.ROLLING
 	if attack == Attack.ROLLING:
-		move(delta, speed)
+		move(delta)
 
-func _on_edge(body):
+func _on_edge(_body):
 	flip()
 
 func _on_side_collision(body):
