@@ -179,7 +179,7 @@ func move(delta):
 	
 	if Input.is_action_just_pressed("ui_select") and is_on_wall_only():
 		velocity.y = -Speed.WALL_JUMP
-		velocity.x = -Speed.WALK * 2.5 * direction
+		velocity.x = -Speed.WALK * 2.5 * direction_watching
 	
 	elif Input.is_action_just_pressed("ui_select") and is_on_floor():
 		velocity.y = -Speed.JUMP

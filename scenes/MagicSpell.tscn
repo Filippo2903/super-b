@@ -1,13 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx0h1xehtq7p4"]
+[gd_scene load_steps=8 format=3 uid="uid://cx0h1xehtq7p4"]
 
 [ext_resource type="Script" path="res://scripts/magic_spell.gd" id="1_qb8mm"]
 [ext_resource type="Texture2D" uid="uid://q1www7lo4vx0" path="res://assets/boss/MagicSpell.png" id="2_77836"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g0cfh"]
-radius = 14.1421
+radius = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0jha"]
+atlas = ExtResource("2_77836")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee675"]
+atlas = ExtResource("2_77836")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ajmp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0jha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee675")
+}],
+"loop": true,
+"name": &"Spell",
+"speed": 3.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_okp2h"]
-radius = 14.8661
+radius = 19.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 0
@@ -16,8 +38,12 @@ script = ExtResource("1_qb8mm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g0cfh")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_77836")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.3125, 1.3125)
+sprite_frames = SubResource("SpriteFrames_2ajmp")
+animation = &"Spell"
+frame_progress = 0.303787
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

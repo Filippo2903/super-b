@@ -5,6 +5,7 @@ const SPEED = 400
 var player
 
 func _ready():
+	$AnimatedSprite2D.play("Spell")
 	player = get_parent().get_node("Player")
 
 func _physics_process(_delta):
