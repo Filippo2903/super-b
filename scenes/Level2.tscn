@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ceo7ad3epa2ew"]
+[gd_scene load_steps=11 format=3 uid="uid://ceo7ad3epa2ew"]
 
 [ext_resource type="Texture2D" uid="uid://2q3lqk5mmv7y" path="res://assets/background/Background_2.png" id="1_meytf"]
 [ext_resource type="Texture2D" uid="uid://cbaw0t5sydlnn" path="res://assets/background/Background_1.png" id="2_skobi"]
@@ -6,8 +6,15 @@
 [ext_resource type="Script" path="res://scripts/tilemap.gd" id="4_bedom"]
 [ext_resource type="PackedScene" uid="uid://jetiech2pdka" path="res://scenes/Player.tscn" id="5_qrcg1"]
 [ext_resource type="PackedScene" uid="uid://4clkf8r3lajx" path="res://scenes/UI.tscn" id="6_0e2f5"]
+[ext_resource type="PackedScene" uid="uid://dkh720b1na60r" path="res://scenes/FlyingDoomba.tscn" id="6_3ycy4"]
 [ext_resource type="PackedScene" uid="uid://hpkqyg78mxn3" path="res://scenes/Coin.tscn" id="6_eiwfl"]
 [ext_resource type="PackedScene" uid="uid://1u6lg0vfp8u7" path="res://scenes/PauseController.tscn" id="7_pmrkf"]
+
+[sub_resource type="Curve2D" id="Curve2D_0kovh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2817, -722, 0, 0, 0, 0, 2813, -32, 0, 0, 0, 0, 2815, -32, 0, 0, 0, 0, 2815, -724)
+}
+point_count = 4
 
 [node name="Level2" type="Node2D"]
 
@@ -38,7 +45,19 @@ layer_0/tile_data = PackedInt32Array(-917510, 131072, 1, -851974, 131072, 1, -78
 script = ExtResource("4_bedom")
 
 [node name="Player" parent="." instance=ExtResource("5_qrcg1")]
-position = Vector2(0, -32)
+position = Vector2(331, -153)
+
+[node name="Path2D" type="Path2D" parent="."]
+z_as_relative = false
+curve = SubResource("Curve2D_0kovh")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(2817, -722)
+rotation = -1.5708
+rotates = false
+
+[node name="FlyingDoomba" parent="Path2D/PathFollow2D" instance=ExtResource("6_3ycy4")]
+rotation = 1.5708
 
 [node name="Coin" parent="." instance=ExtResource("6_eiwfl")]
 position = Vector2(3242, -669)

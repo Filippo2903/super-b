@@ -47,7 +47,9 @@ func flip():
 func animate():
 	if attack == Attack.ROLLING:
 		animation.play("roll")
+		animation.rotate(15)
 	else:
+		animation.rotation = 0
 		animation.play("spell")
 
 func roll(_delta):

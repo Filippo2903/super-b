@@ -1,3 +1,5 @@
+PathFollow2D
+Path2D
 Sprite2D
 AnimatedSprite2D
 AnimationPlayer
@@ -20,8 +22,6 @@ Label
 Node
 NinePatchRect
 Camera2D
-PathFollow2D
-Path2D
 Node2D
 RigidBody2D
 CanvasGroup
