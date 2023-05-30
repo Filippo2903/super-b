@@ -14,7 +14,8 @@ func save_options():
 func load_options():
 	var fullscreen = config.get_value("Options", "fullscreen", false)
 	var vsync = config.get_value("Options", "vsync", false)
-
+	
+	print(fullscreen)
 	FullscreenCheckButton.button_pressed = fullscreen
 	
 	VsyncCheckButton.set_pressed_no_signal(vsync)
@@ -28,13 +29,11 @@ func _on_resume_pressed():
 	get_node(PauseController).resume()
 	get_tree().set_deferred("paused", false)
 
-func _on_FullscreenCheckButton_toggled(button_pressed):
-	if button_pressed:
-		if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	else:
-		if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_WINDOWED:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+func _on_fullscreen_check_button_toggled(button_pressed):
+	if button_pressed and DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	elif DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_WINDOWED:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _on_v_sync_check_button_toggled(button_pressed):
 	if button_pressed:

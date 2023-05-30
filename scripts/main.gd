@@ -3,7 +3,6 @@ extends Node2D
 func _ready():
 	var config = ConfigFile.new()
 	
-	var err = config.load("res://options.cfg")
 	var fullscreen = config.get_value("Options", "fullscreen", false)
 	var vsync = config.get_value("Options", "vsync", false)
 	

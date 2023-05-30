@@ -16,9 +16,6 @@ script = ExtResource("1_c2rqa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a1qa5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_feiva")
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 128
 collision_mask = 2
@@ -26,5 +23,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visibility_layer = 16
 shape = SubResource("RectangleShape2D_myqkn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_feiva")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_hit"]

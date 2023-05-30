@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://1u6lg0vfp8u7" path="res://scenes/PauseController.tscn" id="9_v06ei"]
 
 [node name="Level1" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_lcdb4")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -42,7 +43,6 @@ layer_0/tile_data = PackedInt32Array(-262131, 0, 0, -262126, 0, 0, -262124, 0, 0
 script = ExtResource("7_s55hi")
 
 [node name="Player" parent="." instance=ExtResource("5_yncq3")]
-position = Vector2(132, -37)
 
 [node name="Coin" parent="." instance=ExtResource("8_pxsa2")]
 position = Vector2(1249, -714)

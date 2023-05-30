@@ -4,7 +4,7 @@ const GRAVITY = 3900
 
 const Speed = {
 	WALK = 650,
-	WALL_JUMP = 1000,
+	WALL_JUMP = 15000,
 	JUMP = 1500,
 	GROUND_POUND = 1300,
 }
@@ -178,8 +178,8 @@ func move(delta):
 		direction_watching = direction
 	
 	if Input.is_action_just_pressed("ui_select") and is_on_wall_only():
-		velocity.y = -Speed.WALL_JUMP
-		velocity.x = -Speed.WALK * 2.5 * direction_watching
+		velocity.y = lerpf(velocity.y, -Speed.WALL_JUMP, 0.08)
+		velocity.x = lerpf(velocity.x, -Speed.WALK * 25 * direction_watching, 0.08)
 	
 	elif Input.is_action_just_pressed("ui_select") and is_on_floor():
 		velocity.y = -Speed.JUMP
