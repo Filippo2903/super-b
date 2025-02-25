@@ -1,8 +1,7 @@
 # Super B
 
-## Overview
-
 Super-B is a platformer project inspired by classic Super Mario-style gameplay. It features two levels filled with obstacles, enemies, and power-ups, culminating in a challenging boss fight at the end.
+
 ## Features
 
 - **Player Mechanics**: Movement, shooting, power-ups.
