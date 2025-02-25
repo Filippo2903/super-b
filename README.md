@@ -1,4 +1,4 @@
-# Godot Game Project
+# Super B
 
 ## Overview
 
